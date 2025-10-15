@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"nastea-billing","appId":"1:120553882231:android:8e91381b644e6196affc72","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"nastea-billing","configurations":{"android":"1:120553882231:android:8e91381b644e6196affc72","ios":"1:120553882231:ios:db227d02090fbc8caffc72"}}}}}}
