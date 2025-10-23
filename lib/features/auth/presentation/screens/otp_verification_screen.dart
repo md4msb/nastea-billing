@@ -1,56 +1,45 @@
 import 'dart:developer';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../../core/extensions/nastea_text_styles.dart';
+import '../widgets/auth_appbar.dart';
 
-class VerificationScreen extends StatelessWidget {
+class OtpVerificationScreen extends HookConsumerWidget {
   final String verificationId;
 
-  const VerificationScreen({super.key, required this.verificationId});
-
-  Future<void> verifyOtp(BuildContext context) async {
-    String otp = "012388";
-    FirebaseAuth auth = FirebaseAuth.instance;
-
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId,
-        smsCode: otp,
-      );
-
-      // Sign in the user with the credential
-      await auth.signInWithCredential(credential);
-      log('User signed in successfully');
-    } catch (e) {
-      log('[Auth error] ${e.toString()}');
-    }
-  }
+  const OtpVerificationScreen({super.key, required this.verificationId});
 
   @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    
-    double availableWidth = screenWidth - 40 - 40;
-    double boxWidth = (availableWidth / 6).round().toDouble();
-    double boxHeight = (boxWidth / 0.887).round().toDouble();
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final phoneNumber =  ref.watch(authProvider)?.phoneNumber;
+    double screenWidth = useMemoized(() => MediaQuery.of(context).size.width);
+    double availableWidth = useMemoized(() => screenWidth - 40 - 40);
+    double boxWidth = useMemoized(
+      () => (availableWidth / 6).round().toDouble(),
+    );
+    double boxHeight = useMemoized(() => (boxWidth / 0.887).round().toDouble());
 
-    TextEditingController otpController = TextEditingController();
+    final otpController = useTextEditingController();
+
+    Future<void> submitOtp() async {
+      String smsCode = otpController.text.trim();
+
+      if (smsCode.length == 6) {
+        ref
+            .read(authProvider.notifier)
+            .verifyOtp(verificationId: verificationId, smsCode: smsCode);
+      } else {
+        //todo
+        log('[input error] please enter valid 6 digit opt');
+      }
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        leading: SizedBox.shrink(),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.close),
-          ),
-        ],
-      ),
+      appBar: AuthAppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,7 +65,7 @@ class VerificationScreen extends StatelessWidget {
 
               // Subtitle
               Text(
-                "We’ve sent an SMS with an activation code to your phone +91 9907883651",
+                "We’ve sent an SMS with an activation code to your phone phoneNumber", //todo disp dynamic phone number
                 style: NasteaTextStyles.body(
                   fontSize: 14,
                   color: Colors.black54,
@@ -138,7 +127,7 @@ class VerificationScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await verifyOtp(context);
+          await submitOtp();
         },
         backgroundColor: Color(0xFF46A56C),
         elevation: 2.5,

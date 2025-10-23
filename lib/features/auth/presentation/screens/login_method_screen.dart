@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
+import 'package:nastea_billing/features/auth/presentation/screens/admin_signin_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone_login_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginMethodScreen extends StatelessWidget {
+  const LoginMethodScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height * 0.8,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -23,9 +26,11 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _loginTypeBtn('Google', context),
+              ..._buildBrandingWigets(),
+              _loginTypeBtn('Email', context),
+              Gap(14),
               _loginTypeBtn('OTP', context),
-              Gap(25),
+              Gap(24),
             ],
           ),
         ),
@@ -33,16 +38,46 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
+  List<Widget> _buildBrandingWigets() {
+    return [
+      Image.asset('assets/images/nastea_logo.png', height: 101, width: 180),
+      Gap(50),
+      Text(
+        'Elevate Every Move',
+        style: NasteaTextStyles.title(
+          fontSize: 24,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFF4D3E3E),
+        ),
+      ),
+      Gap(16),
+      Text(
+        'Manage your Nastea business effortlessly\nfrom billing to delivery',
+        textAlign: TextAlign.center,
+        style: NasteaTextStyles.body(
+          fontSize: 16,
+          color: Color.fromARGB(179, 0, 0, 0),
+        ),
+      ),
+      Gap(100),
+    ];
+  }
+
   InkWell _loginTypeBtn(String type, BuildContext ctx) {
     return InkWell(
       onTap: () {
-        Navigator.of(
-          ctx,
-        ).push(MaterialPageRoute(builder: (context) => PhoneLoginScreen()));
+        if (type == 'Email') {
+          Navigator.of(
+            ctx,
+          ).push(MaterialPageRoute(builder: (context) => AdminSignInScreen()));
+        } else {
+          Navigator.of(
+            ctx,
+          ).push(MaterialPageRoute(builder: (context) => PhoneLoginScreen()));
+        }
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
           color: Color(0xFFFFFFFF),
           borderRadius: BorderRadius.circular(100),
@@ -50,7 +85,7 @@ class LoginScreen extends StatelessWidget {
         ),
         child: Row(
           children: [
-            if (type == 'Google')
+            if (type == 'Email')
               SvgPicture.asset('assets/images/google_logo.svg')
             else
               SvgPicture.asset('assets/images/message_icon.svg'),

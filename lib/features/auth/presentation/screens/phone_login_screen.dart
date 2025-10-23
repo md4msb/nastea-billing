@@ -1,28 +1,45 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
-import 'package:nastea_billing/features/auth/presentation/screens/verification_screen.dart';
+import 'package:nastea_billing/features/auth/presentation/screens/otp_verification_screen.dart';
+import 'package:nastea_billing/features/auth/presentation/widgets/auth_appbar.dart';
+import '../controller/auth_provider.dart';
 
-class PhoneLoginScreen extends StatelessWidget {
+class PhoneLoginScreen extends HookConsumerWidget {
   const PhoneLoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final phoneController = useTextEditingController();
+
+
+
+    // Future<void> submitPhoneNumber() async {
+    //   try {
+    //     await ref
+    //         .read(authProvider.notifier)
+    //         .submitPhoneNumber(
+    //           phoneNumber: phoneController.text.trim(),
+    //           codeSent: (String verificationId, int? resendToken) {
+    //             Navigator.of(context).push(
+    //               MaterialPageRoute(
+    //                 builder: (context) => VerificationScreen(verificationId: verificationId),
+    //               ),
+    //             );
+    //           },
+    //         );
+    //   } on FirebaseAuthException catch (e) {
+    //     dispSnackBar(e.message ?? 'Firebase error occurred.');
+    //   } catch (e) {
+    //     dispSnackBar(e.toString().replaceAll('Exception: ', ''));
+    //   }
+    // }
+
     return Scaffold(
-      appBar: AppBar(
-        leading: SizedBox.shrink(),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.close),
-          ),
-        ],
-      ),
+      appBar: AuthAppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,6 +73,7 @@ class PhoneLoginScreen extends StatelessWidget {
                   Gap(20),
                   Expanded(
                     child: TextFormField(
+                      controller: phoneController,
                       keyboardType: TextInputType.phone,
                       maxLines: 1,
                       maxLength: 10,
@@ -84,7 +102,7 @@ class PhoneLoginScreen extends StatelessWidget {
               ),
               Gap(20),
               Text(
-                'Nastea will send you a text with a verification code.\nMessage and data rates may apply.',
+                'Nastea will send you a text with a verification code. Message and data rates may apply.',
                 style: NasteaTextStyles.body(
                   fontSize: 14,
                   color: Color(0xFF7C7C7C),
@@ -97,13 +115,7 @@ class PhoneLoginScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // await submitPhoneNumber(context);
-          Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) =>
-                VerificationScreen(verificationId: ''),
-          ),
-        );
+          // await submitPhoneNumber();
         },
         backgroundColor: Color(0xFF46A56C),
         elevation: 2.5,
@@ -111,26 +123,22 @@ class PhoneLoginScreen extends StatelessWidget {
       ),
     );
   }
-
-  Future<void> submitPhoneNumber(BuildContext context) async {
-    String phoneNumber = "+917902882888";
-    FirebaseAuth auth = FirebaseAuth.instance;
-    await auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) {       
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        log('[Auth error] ${e.message.toString()}');
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) =>
-                VerificationScreen(verificationId: verificationId),
-          ),
-        );
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-  }
 }
+
+
+    // void dispSnackBar(String message) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text(
+    //         message,
+    //         style: NasteaTextStyles.body(
+    //           fontSize: 14,
+    //           color: Color(0xFF795548),
+    //         ),
+    //       ),
+    //       behavior: SnackBarBehavior.floating,
+    //       backgroundColor: Color(0xFFFFF8E1),
+    //       elevation: 4,
+    //     ),
+    //   );
+    // }
