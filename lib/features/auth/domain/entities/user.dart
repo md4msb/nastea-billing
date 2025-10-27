@@ -5,6 +5,7 @@ class User extends Equatable {
   final String? phoneNumber;
   final String? name;
   final String? email;
+  final String? role;
   final bool isAuthenticated;
 
   const User({
@@ -12,9 +13,10 @@ class User extends Equatable {
     this.phoneNumber,
     this.name,
     this.email,
+    this.role,
     this.isAuthenticated = false,
   });
 
   @override
-  List<Object?> get props => [id, phoneNumber, name, email, isAuthenticated];
+  List<Object?> get props => [id, phoneNumber, name, email, role, isAuthenticated];
 }

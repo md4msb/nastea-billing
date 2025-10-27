@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
-import 'package:nastea_billing/features/auth/presentation/screens/admin_signin_screen.dart';
-import 'package:nastea_billing/features/auth/presentation/screens/phone_login_screen.dart';
 
 class LoginMethodScreen extends StatelessWidget {
   const LoginMethodScreen({super.key});
@@ -26,7 +26,7 @@ class LoginMethodScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ..._buildBrandingWigets(),
+              ..._getBrandingWigets(),
               _loginTypeBtn('Email', context),
               Gap(14),
               _loginTypeBtn('OTP', context),
@@ -38,42 +38,38 @@ class LoginMethodScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildBrandingWigets() {
-    return [
-      Image.asset('assets/images/nastea_logo.png', height: 101, width: 180),
-      Gap(50),
-      Text(
-        'Elevate Every Move',
-        style: NasteaTextStyles.title(
-          fontSize: 24,
-          fontWeight: FontWeight.w700,
-          color: Color(0xFF4D3E3E),
-        ),
+  List<Widget> _getBrandingWigets() => [
+    Image.asset('assets/images/nastea_logo.png', height: 101, width: 180),
+    Gap(50),
+    Text(
+      'Elevate Every Move',
+      style: NasteaTextStyles.title(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF4D3E3E),
       ),
-      Gap(16),
-      Text(
-        'Manage your Nastea business effortlessly\nfrom billing to delivery',
-        textAlign: TextAlign.center,
-        style: NasteaTextStyles.body(
-          fontSize: 16,
-          color: Color.fromARGB(179, 0, 0, 0),
-        ),
+    ),
+    Gap(16),
+    Text(
+      'Manage your Nastea business effortlessly\nfrom billing to delivery',
+      textAlign: TextAlign.center,
+      style: NasteaTextStyles.body(
+        fontSize: 16,
+        color: Color.fromARGB(179, 0, 0, 0),
       ),
-      Gap(100),
-    ];
-  }
+    ),
+    Gap(100),
+  ];
 
   InkWell _loginTypeBtn(String type, BuildContext ctx) {
     return InkWell(
       onTap: () {
         if (type == 'Email') {
-          Navigator.of(
-            ctx,
-          ).push(MaterialPageRoute(builder: (context) => AdminSignInScreen()));
+          ctx.pushNamed(RouteNames.adminSignIn);
         } else {
-          Navigator.of(
-            ctx,
-          ).push(MaterialPageRoute(builder: (context) => PhoneLoginScreen()));
+          // Navigator.of(
+          //   ctx,
+          // ).push(MaterialPageRoute(builder: (context) => PhoneLoginScreen()));
         }
       },
       child: Container(

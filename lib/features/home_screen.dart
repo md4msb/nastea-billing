@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
-import 'package:nastea_billing/features/bills/presentation/screens/bill_creation_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -64,11 +63,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                     onPressed: () {
                       
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const BillCreationScreen(),
-                        ),
-                      );
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const BillCreationScreen(),
+                      //   ),
+                      // );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -10,7 +10,6 @@ class AdminSignInScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
@@ -37,28 +36,8 @@ class AdminSignInScreen extends HookConsumerWidget {
       return null;
     }, []);
 
-    // String? validateEmail(String? value) {
-    //   if (value == null || value.isEmpty) {
-    //     return 'Email is required';
-    //   }
-    //   if (!value.contains('@') || !value.contains('.')) {
-    //     return 'Please enter a valid email';
-    //   }
-    //   return null;
-    // }
-
-    // String? validatePassword(String? value) {
-    //   if (value == null || value.isEmpty) {
-    //     return 'Password is required';
-    //   }
-    //   if (value.length < 6) {
-    //     return 'Password must be at least 6 characters';
-    //   }
-    //   return null;
-    // }
-
     return Scaffold(
-      // backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AuthAppBar(),
       body: SafeArea(
         child: FadeTransition(
@@ -224,3 +203,26 @@ class AppButton extends HookWidget {
     );
   }
 }
+
+
+
+
+    // String? validateEmail(String? value) {
+    //   if (value == null || value.isEmpty) {
+    //     return 'Email is required';
+    //   }
+    //   if (!value.contains('@') || !value.contains('.')) {
+    //     return 'Please enter a valid email';
+    //   }
+    //   return null;
+    // }
+
+    // String? validatePassword(String? value) {
+    //   if (value == null || value.isEmpty) {
+    //     return 'Password is required';
+    //   }
+    //   if (value.length < 6) {
+    //     return 'Password must be at least 6 characters';
+    //   }
+    //   return null;
+    // }

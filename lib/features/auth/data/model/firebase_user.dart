@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseUser extends User {
   const FirebaseUser({
-    required super.id,
-    required super.phoneNumber,
+    super.id,
+    super.phoneNumber,
     super.name,
     super.email,
+    super.role,
     super.isAuthenticated,
   });
 
@@ -18,6 +19,7 @@ class FirebaseUser extends User {
       phoneNumber: data?['phone_number'] as String? ?? '',
       name: data?['name'] as String? ?? '',
       email: data?['email'] as String? ?? '',
+      role: data?['role'] as String? ?? '',
     );
   }
 
@@ -28,6 +30,7 @@ class FirebaseUser extends User {
       'phone_number': phoneNumber,
       'name': name,
       'email': email,
+      'role': role,
     };
   }
 
@@ -37,6 +40,7 @@ class FirebaseUser extends User {
       phoneNumber: user.phoneNumber ?? "",
       name: user.name ?? "",
       email: user.email ?? "",
+      role: user.role ?? '',
     );
   }
 }

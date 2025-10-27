@@ -1,6 +1,8 @@
-import 'package:nastea_billing/features/auth/presentation/controller/state/auth_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../domain/entities/user.dart';
+import 'state/auth_state.dart';
 import '../../domain/repositories/auth_repo.dart';
+import '../di/injection.dart';
 
 part 'auth_provider.g.dart';
 
@@ -9,8 +11,19 @@ class AuthNotifier extends _$AuthNotifier {
   late final AuthRepo _authRepo;
 
   @override
-  AuthState? build() {
+  AuthState build() {
+    _authRepo = ref.read(authRepositoryProvider);
+    getSignedInUser(useLoading: true);
     return AuthState.initial();
+  }
+
+  Future<User?> getSignedInUser({bool useLoading = false}) async {
+    if (useLoading) state = AuthState.gettingSignedInUser();
+    final result = await _authRepo.getLoggedInUser();
+    return result.fold((error) => null, (user) {
+      state = AuthState.success(user);
+      return user;
+    });
   }
 
   Future<void> adminSignIn(String email, String password) async {
