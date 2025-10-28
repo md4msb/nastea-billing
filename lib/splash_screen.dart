@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
@@ -11,7 +10,7 @@ class SplashScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
-      Future.delayed(const Duration(seconds: 2)).then((_) {
+      Future.delayed(const Duration(seconds: 1)).then((_) {
         if (!context.mounted) {
           return;
         }
@@ -21,6 +20,7 @@ class SplashScreen extends HookConsumerWidget {
     }, []);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Image.asset(
           'assets/images/nastea_logo.png',

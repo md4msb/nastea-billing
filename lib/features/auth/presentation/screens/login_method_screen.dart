@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
 

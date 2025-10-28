@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
+import 'package:nastea_billing/core/extensions/user_ref_extension.dart';
 import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
-import 'package:nastea_billing/features/auth/presentation/controller/state/auth_state.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/admin_signin_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/login_method_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone_login_screen.dart';
-import 'package:nastea_billing/features/home_screen.dart';
+import 'package:nastea_billing/features/home_gate.dart';
 import 'package:nastea_billing/splash_screen.dart';
 part 'redirection.dart';
 part 'refresh_listener.dart';
@@ -53,7 +52,7 @@ final routeProvider = Provider(
       GoRoute(
         name: RouteNames.home,
         path: '/',
-        builder: (context, state) => HomeScreen(),
+        builder: (context, state) => HomeGate(),
       ),
     ],
   ),

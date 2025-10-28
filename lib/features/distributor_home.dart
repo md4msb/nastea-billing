@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class DistributorHomeScreen extends StatelessWidget {
+  const DistributorHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

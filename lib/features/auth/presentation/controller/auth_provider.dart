@@ -31,7 +31,7 @@ class AuthNotifier extends _$AuthNotifier {
 
     final result = await _authRepo.logInWithEmailAndPassword(email, password);
 
-    result.fold(
+    state = result.fold(
       (error) => AuthState.errorSigningInAdmin(error),
       (user) => AuthState.success(user),
     );

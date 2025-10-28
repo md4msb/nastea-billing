@@ -1,3 +1,5 @@
+export 'package:go_router/go_router.dart';
+
 class RouteNames {
   static const String home = '/';
   static const String splash = '/splash-screen';

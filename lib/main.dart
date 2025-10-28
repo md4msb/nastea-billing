@@ -19,7 +19,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.read(routeProvider);
-
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Nastea Billing',
@@ -29,11 +28,6 @@ class MyApp extends ConsumerWidget {
       routeInformationProvider: router.routeInformationProvider,
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
-      // home:
-      // //  (user?.isAuthenticated == true)
-      // //     ? const HomeScreen()
-      // //     :
-      //     const LoginMethodScreen(),
     );
   }
 }

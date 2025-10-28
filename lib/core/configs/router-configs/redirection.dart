@@ -2,13 +2,13 @@ part of 'router.dart';
 
 FutureOr<String?> handleRedirection(GoRouterState state, Ref ref) {
   final isSigninMethod = state.matchedLocation == RouteNames.signInMethod;
-  final isSignInAdmin = state.matchedLocation == RouteNames.adminSignIn;
+  final isAdminSignIn = state.matchedLocation == RouteNames.adminSignIn;
   final isPhoneSignIn = state.matchedLocation == RouteNames.phoneSignIn;
   final isOtpVerification = state.matchedLocation == RouteNames.otpVerification;
   final isSplashScreen = state.matchedLocation == RouteNames.splash;
 
   if (isSigninMethod ||
-      isSignInAdmin ||
+      isAdminSignIn ||
       isPhoneSignIn ||
       isOtpVerification ||
       isSplashScreen) {
@@ -18,15 +18,13 @@ FutureOr<String?> handleRedirection(GoRouterState state, Ref ref) {
   // check if the user is logged in or not
   final isAuthenticated = _isAuthenticated(ref);
   if (!isAuthenticated) {
-    return "/sign-in";
+    return RouteNames.signInMethod;
   }
 
   return null;
 }
 
 bool _isAuthenticated(Ref ref) {
-  final user = ref
-      .read(authProvider)
-      .maybeMap(success: (user) => user, orElse: () => null);
+  final user = ref.readCurrentUser;
   return user != null;
 }
