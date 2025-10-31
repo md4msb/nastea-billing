@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
+import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class ShopDetailsForm extends StatefulWidget {
   const ShopDetailsForm({super.key});
@@ -84,56 +85,6 @@ class _ShopDetailsFormState extends State<ShopDetailsForm> {
     return Text(
       label,
       style: NasteaTextStyles.body(fontSize: size, fontWeight: FontWeight.w600),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  final TextEditingController? controller;
-  final String hintText;
-  final TextInputType? keyboardType;
-  final int? maxLines;
-  final Widget? prefixIcon;
-
-  const CustomTextField({
-    super.key,
-    this.controller,
-    required this.hintText,
-    this.keyboardType,
-    this.maxLines,
-    this.prefixIcon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0, bottom: 12), // Add margin here
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12),
-          hintText: hintText,
-          hintStyle: NasteaTextStyles.body(fontSize: 14, color: Colors.black54),
-          prefixIcon: prefixIcon,
-          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 24),
-          fillColor: Color(0xFFF6F8FA),
-          filled: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
-          ),
-        ),
-      ),
     );
   }
 }

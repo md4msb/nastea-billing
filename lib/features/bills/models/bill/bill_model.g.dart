@@ -14,9 +14,6 @@ _BillModel _$BillModelFromJson(Map<String, dynamic> json) => _BillModel(
   phone: json['phone'] as String,
   createdBy: json['createdBy'] as String,
   createdAt: json['createdAt'] as String,
-  items: (json['items'] as List<dynamic>)
-      .map((e) => Item.fromJson(e as Map<String, dynamic>))
-      .toList(),
   totalAmount: (json['totalAmount'] as num).toDouble(),
 );
 
@@ -29,6 +26,5 @@ Map<String, dynamic> _$BillModelToJson(_BillModel instance) =>
       'phone': instance.phone,
       'createdBy': instance.createdBy,
       'createdAt': instance.createdAt,
-      'items': instance.items,
       'totalAmount': instance.totalAmount,
     };
