@@ -35,9 +35,11 @@ class SplashScreen extends HookConsumerWidget {
     final user = await ref.read(authProvider.notifier).getSignedInUser();
     if (!context.mounted) return;
     if (user != null) {
-      context.goNamed(RouteNames.home);
+      if (user.role == 'admin') {
+        context.goNamed(RouteNames.adminDashboard);
+      }
     } else {
-      context.goNamed(RouteNames.signInMethod);
+      context.goNamed(RouteNames.login);
     }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../items/data/models/item/item_model.dart';
+
 
 part 'bill_model.freezed.dart';
 part 'bill_model.g.dart';
@@ -14,7 +14,7 @@ abstract class BillModel with _$BillModel {
     required String phone,
     required String createdBy,
     required String createdAt,
-    required List<Item> items,
+    // required List<Item> items,
     required double totalAmount,
   }) = _BillModel;
 

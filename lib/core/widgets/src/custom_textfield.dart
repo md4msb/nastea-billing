@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
+import '../../extensions/extensions.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;

@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BillModel {
 
- String get id; String get shopName; String get location; String get contact; String get phone; String get createdBy; String get createdAt; List<Item> get items; double get totalAmount;
+ String get id; String get shopName; String get location; String get contact; String get phone; String get createdBy; String get createdAt;// required List<Item> items,
+ double get totalAmount;
 /// Create a copy of BillModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $BillModelCopyWith<BillModel> get copyWith => _$BillModelCopyWithImpl<BillModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BillModel&&(identical(other.id, id) || other.id == id)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.location, location) || other.location == location)&&(identical(other.contact, contact) || other.contact == contact)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.totalAmount, totalAmount) || other.totalAmount == totalAmount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BillModel&&(identical(other.id, id) || other.id == id)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.location, location) || other.location == location)&&(identical(other.contact, contact) || other.contact == contact)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.totalAmount, totalAmount) || other.totalAmount == totalAmount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,shopName,location,contact,phone,createdBy,createdAt,const DeepCollectionEquality().hash(items),totalAmount);
+int get hashCode => Object.hash(runtimeType,id,shopName,location,contact,phone,createdBy,createdAt,totalAmount);
 
 @override
 String toString() {
-  return 'BillModel(id: $id, shopName: $shopName, location: $location, contact: $contact, phone: $phone, createdBy: $createdBy, createdAt: $createdAt, items: $items, totalAmount: $totalAmount)';
+  return 'BillModel(id: $id, shopName: $shopName, location: $location, contact: $contact, phone: $phone, createdBy: $createdBy, createdAt: $createdAt, totalAmount: $totalAmount)';
 }
 
 
@@ -48,7 +49,7 @@ abstract mixin class $BillModelCopyWith<$Res>  {
   factory $BillModelCopyWith(BillModel value, $Res Function(BillModel) _then) = _$BillModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String shopName, String location, String contact, String phone, String createdBy, String createdAt, List<Item> items, double totalAmount
+ String id, String shopName, String location, String contact, String phone, String createdBy, String createdAt, double totalAmount
 });
 
 
@@ -65,7 +66,7 @@ class _$BillModelCopyWithImpl<$Res>
 
 /// Create a copy of BillModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? shopName = null,Object? location = null,Object? contact = null,Object? phone = null,Object? createdBy = null,Object? createdAt = null,Object? items = null,Object? totalAmount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? shopName = null,Object? location = null,Object? contact = null,Object? phone = null,Object? createdBy = null,Object? createdAt = null,Object? totalAmount = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,shopName: null == shopName ? _self.shopName : shopName // ignore: cast_nullable_to_non_nullable
@@ -74,8 +75,7 @@ as String,contact: null == contact ? _self.contact : contact // ignore: cast_nul
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Item>,totalAmount: null == totalAmount ? _self.totalAmount : totalAmount // ignore: cast_nullable_to_non_nullable
+as String,totalAmount: null == totalAmount ? _self.totalAmount : totalAmount // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }
@@ -161,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  List<Item> items,  double totalAmount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  double totalAmount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BillModel() when $default != null:
-return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.items,_that.totalAmount);case _:
+return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.totalAmount);case _:
   return orElse();
 
 }
@@ -182,10 +182,10 @@ return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  List<Item> items,  double totalAmount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  double totalAmount)  $default,) {final _that = this;
 switch (_that) {
 case _BillModel():
-return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.items,_that.totalAmount);case _:
+return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.totalAmount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +202,10 @@ return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  List<Item> items,  double totalAmount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String shopName,  String location,  String contact,  String phone,  String createdBy,  String createdAt,  double totalAmount)?  $default,) {final _that = this;
 switch (_that) {
 case _BillModel() when $default != null:
-return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.items,_that.totalAmount);case _:
+return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone,_that.createdBy,_that.createdAt,_that.totalAmount);case _:
   return null;
 
 }
@@ -217,7 +217,7 @@ return $default(_that.id,_that.shopName,_that.location,_that.contact,_that.phone
 @JsonSerializable()
 
 class _BillModel implements BillModel {
-  const _BillModel({required this.id, required this.shopName, required this.location, required this.contact, required this.phone, required this.createdBy, required this.createdAt, required final  List<Item> items, required this.totalAmount}): _items = items;
+  const _BillModel({required this.id, required this.shopName, required this.location, required this.contact, required this.phone, required this.createdBy, required this.createdAt, required this.totalAmount});
   factory _BillModel.fromJson(Map<String, dynamic> json) => _$BillModelFromJson(json);
 
 @override final  String id;
@@ -227,13 +227,7 @@ class _BillModel implements BillModel {
 @override final  String phone;
 @override final  String createdBy;
 @override final  String createdAt;
- final  List<Item> _items;
-@override List<Item> get items {
-  if (_items is EqualUnmodifiableListView) return _items;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_items);
-}
-
+// required List<Item> items,
 @override final  double totalAmount;
 
 /// Create a copy of BillModel
@@ -249,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BillModel&&(identical(other.id, id) || other.id == id)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.location, location) || other.location == location)&&(identical(other.contact, contact) || other.contact == contact)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.totalAmount, totalAmount) || other.totalAmount == totalAmount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BillModel&&(identical(other.id, id) || other.id == id)&&(identical(other.shopName, shopName) || other.shopName == shopName)&&(identical(other.location, location) || other.location == location)&&(identical(other.contact, contact) || other.contact == contact)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.totalAmount, totalAmount) || other.totalAmount == totalAmount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,shopName,location,contact,phone,createdBy,createdAt,const DeepCollectionEquality().hash(_items),totalAmount);
+int get hashCode => Object.hash(runtimeType,id,shopName,location,contact,phone,createdBy,createdAt,totalAmount);
 
 @override
 String toString() {
-  return 'BillModel(id: $id, shopName: $shopName, location: $location, contact: $contact, phone: $phone, createdBy: $createdBy, createdAt: $createdAt, items: $items, totalAmount: $totalAmount)';
+  return 'BillModel(id: $id, shopName: $shopName, location: $location, contact: $contact, phone: $phone, createdBy: $createdBy, createdAt: $createdAt, totalAmount: $totalAmount)';
 }
 
 
@@ -269,7 +263,7 @@ abstract mixin class _$BillModelCopyWith<$Res> implements $BillModelCopyWith<$Re
   factory _$BillModelCopyWith(_BillModel value, $Res Function(_BillModel) _then) = __$BillModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String shopName, String location, String contact, String phone, String createdBy, String createdAt, List<Item> items, double totalAmount
+ String id, String shopName, String location, String contact, String phone, String createdBy, String createdAt, double totalAmount
 });
 
 
@@ -286,7 +280,7 @@ class __$BillModelCopyWithImpl<$Res>
 
 /// Create a copy of BillModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? shopName = null,Object? location = null,Object? contact = null,Object? phone = null,Object? createdBy = null,Object? createdAt = null,Object? items = null,Object? totalAmount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? shopName = null,Object? location = null,Object? contact = null,Object? phone = null,Object? createdBy = null,Object? createdAt = null,Object? totalAmount = null,}) {
   return _then(_BillModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,shopName: null == shopName ? _self.shopName : shopName // ignore: cast_nullable_to_non_nullable
@@ -295,8 +289,7 @@ as String,contact: null == contact ? _self.contact : contact // ignore: cast_nul
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as String,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Item>,totalAmount: null == totalAmount ? _self.totalAmount : totalAmount // ignore: cast_nullable_to_non_nullable
+as String,totalAmount: null == totalAmount ? _self.totalAmount : totalAmount // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }

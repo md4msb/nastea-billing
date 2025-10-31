@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_provider.dart';
+part of 'bills_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,52 +9,52 @@ part of 'auth_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AuthNotifier)
-const authProvider = AuthNotifierProvider._();
+@ProviderFor(BillNotifier)
+const billProvider = BillNotifierProvider._();
 
-final class AuthNotifierProvider
-    extends $NotifierProvider<AuthNotifier, AuthState> {
-  const AuthNotifierProvider._()
+final class BillNotifierProvider
+    extends $NotifierProvider<BillNotifier, List<BillModel>> {
+  const BillNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'authProvider',
+        name: r'billProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$authNotifierHash();
+  String debugGetCreateSourceHash() => _$billNotifierHash();
 
   @$internal
   @override
-  AuthNotifier create() => AuthNotifier();
+  BillNotifier create() => BillNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AuthState value) {
+  Override overrideWithValue(List<BillModel> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AuthState>(value),
+      providerOverride: $SyncValueProvider<List<BillModel>>(value),
     );
   }
 }
 
-String _$authNotifierHash() => r'830bcc8dae7104b936948aaa0f174c31330732fb';
+String _$billNotifierHash() => r'13bc23b46955fd5f9b7d062ca6fb5fea2931ab46';
 
-abstract class _$AuthNotifier extends $Notifier<AuthState> {
-  AuthState build();
+abstract class _$BillNotifier extends $Notifier<List<BillModel>> {
+  List<BillModel> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AuthState, AuthState>;
+    final ref = this.ref as $Ref<List<BillModel>, List<BillModel>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AuthState, AuthState>,
-              AuthState,
+              AnyNotifier<List<BillModel>, List<BillModel>>,
+              List<BillModel>,
               Object?,
               Object?
             >;

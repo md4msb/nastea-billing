@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../extensions/nastea_text_styles.dart';
+import '../../extensions/extensions.dart';
 
 class ErrorToaster {
   static void showError(BuildContext context, {String? message}) {

@@ -1,14 +1,21 @@
 export 'package:go_router/go_router.dart';
 
 class RouteNames {
-  static const String home = '/';
-  static const String splash = '/splash-screen';
-  static const String signInMethod = '/sign-in-method';
-  static const String adminSignIn = '/admin-sign-in';
-  static const String phoneSignIn = '/phone-number-sign-in';
-  static const String otpVerification = '/otp-verification';
+  // ---- AUTH ----
+  static const splash = '/splash';
+  static const login = '/login';
+  static const adminLogin = '/login/email';
+  static const phoneLogin = '/login/phone';
+  static const phoneOtp = '/login/phone/otp';
 
-  static const String settings = '/settings';
+  // ---- ADMIN APP ----
+  static const adminDashboard = 'admin_dashboard';
+  static const items = 'items';
+  static const itemCreate = 'item_create';
+  static const itemEdit = 'item_edit';
+  static const users = '/users';
+  static const settings = '/settings';
+
   static const String about = '/about';
   static const String contact = '/contact';
   static const String notFound = '/not-found';

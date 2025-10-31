@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nastea_billing/core/extensions/nastea_text_styles.dart';
+import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class ShopDetailsForm extends StatefulWidget {
@@ -88,4 +88,3 @@ class _ShopDetailsFormState extends State<ShopDetailsForm> {
     );
   }
 }
-

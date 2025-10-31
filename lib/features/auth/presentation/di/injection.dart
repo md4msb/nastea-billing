@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../data/data-source/auth_data_source.dart';
-import '../../data/data-source/firebase_auth_data_source.dart';
-import '../../data/repo/auth_repo_impl.dart';
+import '../../data/datasources/auth_data_source.dart';
+import '../../data/datasources/firebase_auth_data_source.dart';
+import '../../data/repository-impl/auth_repo_impl.dart';
 import '../../domain/repositories/auth_repo.dart';
 
 part 'injection.g.dart';
