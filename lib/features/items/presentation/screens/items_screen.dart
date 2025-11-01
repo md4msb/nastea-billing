@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/items/presentation/controller/items_provider.dart';
 
 class ItemsScreen extends HookConsumerWidget {
@@ -14,10 +16,7 @@ class ItemsScreen extends HookConsumerWidget {
       backgroundColor: Color(0xFFFBFDFB),
       appBar: AppBar(
         backgroundColor: Color(0xFFFBFDFB),
-        title: Text(
-          "Products ",
-          style: NasteaTextStyles.heading(fontWeight: FontWeight.w600),
-        ),
+        title: NasteaText.heading("Products ", fontWeight: FontWeight.w600),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -50,13 +49,11 @@ class ItemsScreen extends HookConsumerWidget {
                         color: Color(0xFF36825F),
                       ),
                     ),
-                    title: Text(
-                      item.name,
-                      style: NasteaTextStyles.body(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
+                    title: NasteaText.body(
+                      item.name,fontWeight: FontWeight.w500),
+                    
+                    subtitle: NasteaText.body(
                       "${item.variants.length} variants",
-                      style: NasteaTextStyles.body(),
                     ),
                     trailing: Icon(Icons.arrow_forward_ios_rounded),
                   ),
@@ -74,9 +71,8 @@ class ItemsScreen extends HookConsumerWidget {
                           horizontal: 12,
                         ),
 
-                        title: Text(
+                        title: NasteaText.body(
                           "${variant.label} • ₹${variant.price}",
-                          style: NasteaTextStyles.body(fontSize: 14),
                         ),
                       );
                     },
@@ -93,7 +89,7 @@ class ItemsScreen extends HookConsumerWidget {
         foregroundColor: Color(0xFF2A2924).blendWith(Color(0xFFC7F279), 0.85),
         child: Icon(Icons.add),
         onPressed: () {
-          // context.pushNamed(RouteNames.itemCreateScreen);
+          context.pushNamed(RouteNames.itemCreate);
           // showModalBottomSheet(
           //   context: context,
           //   backgroundColor: Color(0xFFFBFDFB),

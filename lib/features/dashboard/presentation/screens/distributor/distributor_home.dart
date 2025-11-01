@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class DistributorHomeScreen extends StatelessWidget {
   const DistributorHomeScreen({super.key});
@@ -11,7 +12,7 @@ class DistributorHomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Nastea', style: NasteaTextStyles.heading()),
+        title: NasteaText.heading('Nastea'),
         actions: [
           Container(
             width: 38,
@@ -32,19 +33,15 @@ class DistributorHomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Gap(20),
-            Text(
+            NasteaText.body(
               '7 venters owing you',
-              style: NasteaTextStyles.body(
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
+              fontWeight: FontWeight.w500,
+              color: Colors.black54,
             ),
-            Text(
+            NasteaText.body(
               'INR 142,645',
-              style: NasteaTextStyles.body(
-                fontSize: 32,
-                fontWeight: FontWeight.w600,
-              ),
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
             ),
             Gap(35),
             Row(
@@ -80,13 +77,11 @@ class DistributorHomeScreen extends StatelessWidget {
                         ),
 
                         Gap(10),
-                        Text(
+                        NasteaText.body(
                           'Create Bill',
-                          style: NasteaTextStyles.body(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ],
                     ),
@@ -115,13 +110,11 @@ class DistributorHomeScreen extends StatelessWidget {
                       children: [
                         Icon(Icons.add, color: Color(0xFF795548)),
                         Gap(10),
-                        Text(
+                        NasteaText.body(
                           'View History',
-                          style: NasteaTextStyles.body(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF795548),
-                          ),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF795548),
                         ),
                       ],
                     ),
@@ -145,12 +138,10 @@ class DistributorHomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gap(10),
-                    Text(
+                    NasteaText.body(
                       "Bills History",
-                      style: NasteaTextStyles.body(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                     Gap(11),
                     Expanded(
@@ -185,19 +176,13 @@ class DistributorHomeScreen extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        NasteaText.body(
                                           'Arun Franklin',
-                                          style: NasteaTextStyles.body(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                        Text(
+                                        NasteaText.body(
                                           'Dec 2, 2023 • 07:30 PM',
-                                          style: NasteaTextStyles.body(
-                                            fontSize: 14,
-                                            color: Colors.black54,
-                                          ),
+                                          color: Colors.black54,
                                         ),
                                       ],
                                     ),
@@ -242,13 +227,11 @@ class DistributorHomeScreen extends StatelessWidget {
                                           100,
                                         ),
                                       ),
-                                      child: Text(
+                                      child: NasteaText.body(
                                         'Pending',
-                                        style: NasteaTextStyles.body(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xFFFF6D00),
-                                        ),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFFFF6D00),
                                       ),
                                     ),
                                   ],

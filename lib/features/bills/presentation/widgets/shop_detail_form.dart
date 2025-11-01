@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class ShopDetailsForm extends StatefulWidget {
@@ -67,12 +66,10 @@ class _ShopDetailsFormState extends State<ShopDetailsForm> {
             maxLines: 1,
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 8, right: 0),
-              child: Text(
+              child: NasteaText.body(
                 '+91 ',
-                style: NasteaTextStyles.body(
-                  fontSize: 16,
-                  color: Colors.black87,
-                ),
+                fontSize: 16,
+                color: Colors.black87,
               ),
             ),
           ),
@@ -82,9 +79,6 @@ class _ShopDetailsFormState extends State<ShopDetailsForm> {
   }
 
   Widget _fieldLabel(String label, [double size = 14]) {
-    return Text(
-      label,
-      style: NasteaTextStyles.body(fontSize: size, fontWeight: FontWeight.w600),
-    );
+    return NasteaText.body(label, fontSize: size, fontWeight: FontWeight.w600);
   }
 }

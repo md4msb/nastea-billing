@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class AppButton extends HookWidget {
   final String text;
@@ -54,7 +55,7 @@ class AppButton extends HookWidget {
                   color: Colors.white,
                 ),
               )
-            : Text(text),
+            : NasteaText.body(text),
       ),
     );
   }

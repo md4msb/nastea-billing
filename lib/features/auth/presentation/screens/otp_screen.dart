@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
@@ -53,23 +54,18 @@ class OtpScreen extends HookConsumerWidget {
               Gap(15),
 
               // Title
-              Text(
+              NasteaText.heading(
                 "Enter your verification \ncode",
-                style: NasteaTextStyles.heading(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
 
               Gap(40),
 
               // Subtitle
-              Text(
+              NasteaText.body(
                 "We’ve sent an SMS with an activation code to your phone phoneNumber", //todo disp dynamic phone number
-                style: NasteaTextStyles.body(
-                  fontSize: 14,
-                  color: Colors.black54,
-                ),
+                color: Colors.black54,
               ),
 
               Gap(20),
@@ -108,16 +104,12 @@ class OtpScreen extends HookConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Send code again ",
-                    style: NasteaTextStyles.body(color: Colors.black54),
-                  ),
-                  Text(
+                  NasteaText.body("Send code again ", color: Colors.black54),
+
+                  NasteaText.body(
                     "00:20",
-                    style: NasteaTextStyles.body(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ],
               ),

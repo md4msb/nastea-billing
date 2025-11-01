@@ -10,9 +10,9 @@ class RouteNames {
 
   // ---- ADMIN APP ----
   static const adminDashboard = 'admin_dashboard';
-  static const items = 'items';
+  static const items = '/items';
   static const itemCreate = 'item_create';
-  static const itemEdit = 'item_edit';
+  static const itemUpdate = 'item_udate';
   static const users = '/users';
   static const settings = '/settings';
 
