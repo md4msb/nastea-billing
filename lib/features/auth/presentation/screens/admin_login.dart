@@ -55,30 +55,27 @@ class AdminLoginScreen extends HookConsumerWidget {
                 _buildGreetingText(),
                 Gap(30),
 
-                Text(
+                NasteaText.body(
                   'Sign in to access your order history and get real-time updateson all your shipments',
                   textAlign: TextAlign.start,
-                  style: NasteaTextStyles.body(
-                    fontSize: 14,
-                    color: Color(0xFFA6A4AD),
-                  ),
+                  color: Color(0xFFA6A4AD),
                 ),
 
                 Gap(22),
 
-                Text('Email address', style: NasteaTextStyles.body()),
+                NasteaText.body('Email address'),
 
                 CustomTextField(
                   controller: emailController,
                   hintText: 'Enter your email',
                   maxLines: 1,
                   fillColor: Colors.white,
-                  topMargin: 6,
+                  margin: EdgeInsets.symmetric(vertical: 8),
                 ),
 
-                Gap(10),
+                Gap(14),
 
-                Text('Password', style: NasteaTextStyles.body()),
+                NasteaText.body('Password'),
 
                 CustomTextField(
                   controller: passwordController,
@@ -86,9 +83,9 @@ class AdminLoginScreen extends HookConsumerWidget {
                   maxLines: 1,
                   fillColor: Colors.white,
                   obscureText: isPasswordVisible.value,
-                  topMargin: 6,
+                  margin: EdgeInsets.only(top: 8, bottom: 15),
                 ),
-                Gap(3),
+
                 _buildPasswordResetButton(onPressed: () {}),
                 Gap(40),
                 AppButton(
@@ -117,10 +114,7 @@ class AdminLoginScreen extends HookConsumerWidget {
             minimumSize: Size.zero, // remove min tap target size
             tapTargetSize: MaterialTapTargetSize.shrinkWrap, // shrink hitbox
           ),
-          child: Text(
-            'Forgot password?',
-            style: NasteaTextStyles.body(fontSize: 14),
-          ),
+          child: NasteaText.body('Forgot password?'),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
-import 'package:nastea_billing/core/extensions/extensions.dart';
+import '../../../../core/widgets/widgets.dart';
 
 class LoginSelectionScreen extends StatelessWidget {
   const LoginSelectionScreen({super.key});
@@ -40,22 +40,18 @@ class LoginSelectionScreen extends StatelessWidget {
   List<Widget> _getBrandingWigets() => [
     Image.asset('assets/images/nastea_logo.png', height: 101, width: 180),
     Gap(50),
-    Text(
+    NasteaText.title(
       'Elevate Every Move',
-      style: NasteaTextStyles.title(
-        fontSize: 24,
-        fontWeight: FontWeight.w700,
-        color: Color(0xFF4D3E3E),
-      ),
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      color: Color(0xFF4D3E3E),
     ),
     Gap(16),
-    Text(
+    NasteaText.body(
       'Manage your Nastea business effortlessly\nfrom billing to delivery',
       textAlign: TextAlign.center,
-      style: NasteaTextStyles.body(
-        fontSize: 16,
-        color: Color.fromARGB(179, 0, 0, 0),
-      ),
+      fontSize: 16,
+      color: Color.fromARGB(179, 0, 0, 0),
     ),
     Gap(100),
   ];
@@ -85,13 +81,11 @@ class LoginSelectionScreen extends StatelessWidget {
             else
               SvgPicture.asset('assets/images/message_icon.svg'),
             Gap(15),
-            Text(
+            NasteaText.body(
               'Login with $type',
-              style: NasteaTextStyles.body(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF46A56C),
-              ),
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF46A56C),
             ),
           ],
         ),

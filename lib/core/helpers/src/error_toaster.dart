@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../extensions/extensions.dart';
+import '../../widgets/widgets.dart';
 
 class ErrorToaster {
   static void showError(BuildContext context, {String? message}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
+        content: NasteaText.body(
           message ?? "An error occurred",
-          style: NasteaTextStyles.body(color: Colors.white),
+          color: Colors.white,
         ),
         backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,

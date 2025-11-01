@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/auth/presentation/widgets/auth_appbar.dart';
-
 
 class PhoneLoginScreen extends HookConsumerWidget {
   const PhoneLoginScreen({super.key});
@@ -12,8 +12,6 @@ class PhoneLoginScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final phoneController = useTextEditingController();
-
-
 
     // Future<void> submitPhoneNumber() async {
     //   try {
@@ -47,22 +45,17 @@ class PhoneLoginScreen extends HookConsumerWidget {
               Gap(30),
               Icon(Icons.phone),
               Gap(20),
-              Text(
-                "What's your phone \nnumber?",
-                style: NasteaTextStyles.heading(fontSize: 28),
-              ),
+              NasteaText.heading("What's your phone \nnumber?", fontSize: 28),
               Gap(40),
               Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      NasteaText.body(
                         '+91',
-                        style: NasteaTextStyles.body(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
                       ),
                       Gap(2),
                       Container(height: 1, width: 45, color: Colors.black),
@@ -99,12 +92,10 @@ class PhoneLoginScreen extends HookConsumerWidget {
                 ],
               ),
               Gap(20),
-              Text(
+              NasteaText.body(
                 'Nastea will send you a text with a verification code. Message and data rates may apply.',
-                style: NasteaTextStyles.body(
-                  fontSize: 14,
-                  color: Color(0xFF7C7C7C),
-                ),
+                fontSize: 14,
+                color: Color(0xFF7C7C7C),
               ),
               Gap(30),
             ],

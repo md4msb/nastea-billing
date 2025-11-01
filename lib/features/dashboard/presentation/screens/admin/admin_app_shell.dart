@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class AdminAppShell extends HookWidget {
   const AdminAppShell({super.key, required this.navigationShell});
@@ -60,22 +60,18 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        NasteaText.body(
           title,
-          style: NasteaTextStyles.body(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
+          fontWeight: FontWeight.w600,
+          color: Colors.black87,
         ),
+
         GestureDetector(
           onTap: onActionTap,
-          child: Text(
+          child: NasteaText.body(
             actionText,
-            style: NasteaTextStyles.body(
-              color: Color(0xFF146356),
-              fontWeight: FontWeight.w500,
-            ),
+            color: Color(0xFF146356),
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],
@@ -94,16 +90,10 @@ class PendingUserTile extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: const Color(0xFFE6F4EA),
-        child: Text(
-          name[0],
-          style: NasteaTextStyles.body(color: Color(0xFF146356)),
-        ),
+        child: NasteaText.body(name[0], color: Color(0xFF146356)),
       ),
-      title: Text(
-        name,
-        style: NasteaTextStyles.body(fontWeight: FontWeight.w600, fontSize: 14),
-      ),
-      subtitle: Text(phone),
+      title: NasteaText.body(name, fontWeight: FontWeight.w600),
+      subtitle: NasteaText.body(phone),
       trailing: Wrap(
         spacing: 8,
         children: [
@@ -113,7 +103,7 @@ class PendingUserTile extends StatelessWidget {
               side: const BorderSide(color: Colors.redAccent),
               foregroundColor: Colors.redAccent,
             ),
-            child: const Text('Reject'),
+            child: NasteaText.body('Reject'),
           ),
           ElevatedButton(
             onPressed: () {},
@@ -121,7 +111,7 @@ class PendingUserTile extends StatelessWidget {
               backgroundColor: const Color(0xFF146356),
               foregroundColor: Colors.white,
             ),
-            child: const Text('Approve'),
+            child: NasteaText.body('Approve'),
           ),
         ],
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:nastea_billing/core/extensions/src/nastea_text_styles.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/dashboard/presentation/widgets/dashboard_grid.dart';
 import 'package:nastea_billing/features/dashboard/presentation/widgets/dashboard_items.dart';
 
@@ -19,13 +19,10 @@ class AdminHomeScreen extends StatelessWidget {
             CircleAvatar(
               radius: 16,
               backgroundColor: Colors.teal,
-              child: Text('A', style: TextStyle(color: Colors.white)),
+              child: NasteaText.body('A', color: Colors.white),
             ),
             SizedBox(width: 8),
-            Text(
-              'Admin',
-              style: NasteaTextStyles.heading(fontWeight: FontWeight.w600),
-            ),
+            NasteaText.heading('Admin', fontWeight: FontWeight.w600),
           ],
         ),
         actions: [

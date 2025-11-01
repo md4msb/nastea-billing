@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
+import 'package:nastea_billing/core/widgets/widgets.dart';
 import '../../../items/presentation/controller/items_provider.dart';
 
 class DashboardGrid extends HookConsumerWidget {
@@ -90,22 +91,17 @@ class DashboardCard extends StatelessWidget {
             const Gap(7),
             Icon(icon, color: foregroundColor, size: 26),
             const Gap(8),
-            Text(
+            NasteaText.body(
               value,
-              style: NasteaTextStyles.body(
-                color: foregroundColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 24,
-              ),
+              color: foregroundColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 24,
             ),
             const Spacer(),
-            Text(
+            NasteaText.body(
               label,
-              style: NasteaTextStyles.body(
-                color: foregroundColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              color: foregroundColor,
+              fontWeight: FontWeight.w500,
             ),
             const Gap(2),
           ],

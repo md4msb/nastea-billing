@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? fillColor;
   final bool? obscureText;
-  final double? topMargin;
+  final EdgeInsetsGeometry? margin;
 
   const CustomTextField({
     super.key,
@@ -20,16 +20,13 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.fillColor = const Color(0xFFF6F8FA),
     this.obscureText,
-    this.topMargin,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        top: topMargin ?? 8.0,
-        bottom: 12,
-      ), // Add margin here
+      padding: margin ?? EdgeInsets.zero, // Add margin here
       child: TextFormField(
         obscureText: obscureText ?? false,
         controller: controller,
