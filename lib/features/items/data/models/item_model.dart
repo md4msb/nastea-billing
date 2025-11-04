@@ -1,33 +1,52 @@
 import 'package:nastea_billing/features/items/domain/entities/item_entity.dart';
-
 part 'variant_model.dart';
 
-class ItemModel extends ItemEntity {
+class ItemModel {
+  final String id;
+  final String name;
+  final List<VariantModel> variants;
+
   const ItemModel({
-    required super.id,
-    required super.name,
-    required super.variants,
+    required this.id,
+    required this.name,
+    required this.variants,
   });
 
-  factory ItemModel.fromJson(Map<String, dynamic> data) {
+  /// From Firebase / JSON
+  factory ItemModel.fromJson(Map<String, dynamic> json) {
     return ItemModel(
-      id: data['id'] ?? '',
-      name: data['name'] ?? '',
-      variants: (data['variants'] as List)
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      variants: (json['variants'] as List<dynamic>)
           .map((v) => VariantModel.fromJson(v))
           .toList(),
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    "name": name,
-    'variants': variants.map((v) => (v as VariantModel).toJson()).toList(),
-  };
+  /// Convert to Firebase / JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'variants': variants.map((v) => v.toJson()).toList(),
+    };
+  }
 
-  factory ItemModel.fromEntity(ItemEntity data) => ItemModel(
-    id: data.id,
-    name: data.name,
-    variants: data.variants.map(VariantModel.fromEntity).toList(),
-  );
+  /// Create model from Entity (for writing to Firestore)
+  factory ItemModel.fromEntity(ItemEntity entity) {
+    return ItemModel(
+      id: entity.id,
+      name: entity.name,
+      variants: entity.variants.map((v) => VariantModel.fromEntity(v)).toList(),
+    );
+  }
+
+  /// Convert Model > Entity
+  ItemEntity toEntity() {
+    return ItemEntity(
+      id: id,
+      name: name,
+      variants: variants.map((v) => v.toEntity()).toList(),
+    );
+  }
 }

@@ -9,7 +9,7 @@ extension NasteaTextStyles on TextStyle {
   }) => GoogleFonts.playfairDisplay(
     fontSize: fontSize ?? 22,
     fontWeight: fontWeight ?? FontWeight.w700,
-    color: color ?? Color(0xFF000000),
+    color: color,
   );
 
   static TextStyle body({
@@ -19,7 +19,7 @@ extension NasteaTextStyles on TextStyle {
   }) => GoogleFonts.inter(
     fontSize: fontSize,
     fontWeight: fontWeight,
-    color: color ?? Color(0xFF000000),
+    color: color,
   );
 
   static TextStyle title({
@@ -29,6 +29,6 @@ extension NasteaTextStyles on TextStyle {
   }) => GoogleFonts.poppins(
     fontSize: fontSize,
     fontWeight: fontWeight,
-    color: color ?? Color(0xFF000000),
+    color: color,
   );
 }

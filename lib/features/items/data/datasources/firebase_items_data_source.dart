@@ -20,12 +20,12 @@ class FirebaseItemsDataSource implements ItemsDataSource {
       _firestore.collection('items');
 
   @override
-  Future<List<ItemModel>> getItemsList() async {
+  Future<List<ItemEntity>> getItemsList() async {
     try {
       if (_userId == null) throw Exception('User not authenticated');
       final snapshot = await _itemsCollection.get();
       return snapshot.docs
-          .map((doc) => ItemModel.fromJson(doc.data()))
+          .map((doc) => ItemModel.fromJson(doc.data()).toEntity())
           .toList();
     } catch (e) {
       rethrow;
@@ -44,14 +44,23 @@ class FirebaseItemsDataSource implements ItemsDataSource {
   }
 
   @override
-  Future<void> updateItem(ItemEntity item) {
-    // TODO: implement updateItem
-    throw UnimplementedError();
+  Future<void> updateItem(ItemEntity item) async {
+    try {
+      if (_userId == null) throw Exception('User not authenticated');
+      final itemModel = ItemModel.fromEntity(item);
+      await _itemsCollection.doc(itemModel.id).update(itemModel.toJson());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<void> deleteItem(String id) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
+  Future<void> deleteItem(String id) async {
+    try {
+      if (_userId == null) throw Exception('User not authenticated');
+      await _itemsCollection.doc(id).delete();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -1,12 +1,17 @@
 part of 'item_model.dart';
 
-class VariantModel extends VariantEntity {
+class VariantModel {
+  final String label;
+  final double price;
+  final double weight;
+
   const VariantModel({
-    required super.label,
-    required super.price,
-    required super.weight,
+    required this.label,
+    required this.price,
+    required this.weight,
   });
 
+  // From Firebase / JSON
   factory VariantModel.fromJson(Map<String, dynamic> data) {
     return VariantModel(
       label: data['label'] ?? '',
@@ -15,12 +20,22 @@ class VariantModel extends VariantEntity {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'label': label,
-    'price': price,
-    'weight': weight,
-  };
+  // Convert to Firebase / JSON
+  Map<String, dynamic> toJson() {
+    return {'label': label, 'price': price, 'weight': weight};
+  }
 
-  factory VariantModel.fromEntity(VariantEntity data) =>
-      VariantModel(label: data.label, price: data.price, weight: data.weight);
+  // Create model from Entity (for writing to Firestore)
+  factory VariantModel.fromEntity(VariantEntity entity) {
+    return VariantModel(
+      label: entity.label,
+      price: entity.price,
+      weight: entity.weight,
+    );
+  }
+
+  // Convert Model > Entity
+  VariantEntity toEntity() {
+    return VariantEntity(label: label, price: price, weight: weight);
+  }
 }
