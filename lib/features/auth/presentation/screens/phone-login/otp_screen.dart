@@ -7,7 +7,7 @@ import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
-import '../widgets/auth_appbar.dart';
+import '../../widgets/auth_appbar.dart';
 
 class OtpScreen extends HookConsumerWidget {
   final String verificationId;

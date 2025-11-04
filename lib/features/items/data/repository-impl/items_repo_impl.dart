@@ -32,14 +32,24 @@ class ItemsRepoImpl implements ItemsRepo {
   }
 
   @override
-  Future<Either<String, Unit>> updateItem(ItemEntity item) {
-    // TODO: implement updateItem
-    throw UnimplementedError();
+  Future<Either<String, Unit>> updateItem(ItemEntity item) async {
+    try {
+      await itemsDataSource.updateItem(item);
+      return Right(unit);
+    } catch (e, stackTrace) {
+      final message = handleError(e, stackTrace);
+      return Left(message);
+    }
   }
 
   @override
-  Future<Either<String, Unit>> deleteItem(String id) {
-    // TODO: implement deleteItem
-    throw UnimplementedError();
+  Future<Either<String, Unit>> deleteItem(String id) async {
+    try {
+      await itemsDataSource.deleteItem(id);
+      return Right(unit);
+    } catch (e, stackTrace) {
+      final message = handleError(e, stackTrace);
+      return Left(message);
+    }
   }
 }

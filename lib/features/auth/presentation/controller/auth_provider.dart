@@ -127,4 +127,9 @@ class AuthNotifier extends _$AuthNotifier {
     //   log('[Auth error] ${e.toString()}');
     // }
   }
+
+  Future<void> logOut() async {
+    await _authRepo.logOut();
+    state = const AuthState.initial();
+  }
 }

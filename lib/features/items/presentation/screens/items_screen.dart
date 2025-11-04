@@ -50,12 +50,49 @@ class ItemsScreen extends HookConsumerWidget {
                       ),
                     ),
                     title: NasteaText.body(
-                      item.name,fontWeight: FontWeight.w500),
-                    
+                      item.name,
+                      fontWeight: FontWeight.w500,
+                    ),
+
                     subtitle: NasteaText.body(
                       "${item.variants.length} variants",
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios_rounded),
+                    trailing: PopupMenuButton(
+                      padding: EdgeInsetsGeometry.all(0),
+                      menuPadding: EdgeInsets.all(0),
+                      // color: Color(0xFFFBFDFB),
+                      child: Icon(Icons.more_vert_rounded),
+
+                      itemBuilder: (context) {
+                        return [
+                          PopupMenuItem(
+                            onTap: () {
+                              context.pushNamed(
+                                RouteNames.itemUpdate,
+                                pathParameters: {'id': item.id},
+                              );
+                            },
+                            child: Center(
+                              child: NasteaText.body(
+                                'Update',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              ref.watch(itemsProvider.notifier).deleteItem(item.id);
+                            },
+                            child: Center(
+                              child: NasteaText.body(
+                                'Delete',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ];
+                      },
+                    ),
                   ),
 
                   ListView.builder(
@@ -90,13 +127,6 @@ class ItemsScreen extends HookConsumerWidget {
         child: Icon(Icons.add),
         onPressed: () {
           context.pushNamed(RouteNames.itemCreate);
-          // showModalBottomSheet(
-          //   context: context,
-          //   backgroundColor: Color(0xFFFBFDFB),
-          //   builder: (context) {
-          //     return Container();
-          //   },
-          // );
         },
       ),
     );

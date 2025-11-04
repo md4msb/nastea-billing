@@ -92,8 +92,11 @@ class FirebaseAuthDataSource implements AuthDataSource {
   }
 
   @override
-  Future<void> logOut() {
-    // TODO: implement logOut
-    throw UnimplementedError();
+  Future<void> logOut() async {
+    try {
+      return await _firebaseAuth.signOut();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

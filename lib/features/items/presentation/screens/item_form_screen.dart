@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nastea_billing/core/helpers/helpers.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
 import '../../domain/entities/item_entity.dart';
 import '../controller/items_provider.dart';
@@ -14,12 +16,10 @@ class ItemFormScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isEditing = itemId != null;
-    final itemsState = ref.watch(itemsProvider);
+    final notifier = ref.read(itemsProvider.notifier);
 
     // Controllers
     final nameController = useTextEditingController();
-
-    // Variant form temp state
     final weightController = useTextEditingController();
     final priceController = useTextEditingController();
 
@@ -29,63 +29,65 @@ class ItemFormScreen extends HookConsumerWidget {
     // Load existing data when editing
     useEffect(() {
       if (isEditing) {
-        // final item = ref
-        //     .read(itemsProvider.notifier)
-        //     .findItemById(itemId!); // ← you should implement this
-
-        // if (item != null) {
-        //   nameController.text = item.name;
-        //   descriptionController.text = item.description ?? "";
-        //   variants.value = List.of(item.variants);
-        // }
+        final item = notifier.findItemById(itemId!);
+        if (item != null) {
+          nameController.text = item.name;
+          variants.value = List.of(item.variants);
+        }
       }
       return null;
     }, []);
 
-    void onSave() {
-      // final name = nameController.text.trim();
-      // if (name.isEmpty) {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     const SnackBar(content: Text("Item name is required")),
-      //   );
-      //   return;
-      // }
+    bool validate() {
+      if (nameController.text.trim().isEmpty) {
+        ErrorToaster.showError(context, message: 'Item name is required');
+        return false;
+      }
+      if (variants.value.isEmpty) {
+        ErrorToaster.showError(
+          context,
+          message: 'At least one variant is required',
+        );
+        return false;
+      }
+      return true;
+    }
 
-      // final item = ItemEntity(
-      //   id: itemId ?? "",
-      //   name: name,
-      //   description: descriptionController.text.trim(),
-      //   variants: variants.value,
-      // );
+    void onSave() async {
+      final name = nameController.text.trim();
+      if (!validate()) return;
 
-      // if (isEditing) {
-      //   ref.read(itemsNotifierProvider.notifier).updateItem(item);
-      // } else {
-      //   ref.read(itemsNotifierProvider.notifier).createItem(item);
-      // }
+      if (isEditing) {
+        final item = ItemEntity(
+          id: itemId!,
+          name: name,
+          variants: variants.value,
+        );
+        await notifier.updateItem(item);
+      } else {
+        await notifier.createItem(name, variants.value);
+      }
 
-      // Navigator.pop(context);
+      if (context.mounted) {
+        context.pop();
+      }
     }
 
     void addVariant() {
-      final weight = weightController.text.trim();
-      final price = priceController.text.trim();
-
-      if (weight.isEmpty || price.isEmpty) return;
-
-      String label = double.parse(weight) >= 1000
-          ? '${double.parse(weight) / 1000}kg'
-          : '$Widget gm';
-
+      final weight = double.tryParse(weightController.text.trim());
+      final price = double.tryParse(priceController.text.trim());
+      if (weight == null || price == null) {
+        ErrorToaster.showError(context, message: 'Enter valid numbers');
+        return;
+      }
       variants.value = [
         ...variants.value,
         VariantEntity(
-          label: label,
-          weight: double.parse(weight),
-          price: double.parse(price),
+          label: notifier.getVariantLabel(weight),
+          weight: weight,
+          price: price,
         ),
       ];
-
       weightController.clear();
       priceController.clear();
     }
@@ -98,7 +100,7 @@ class ItemFormScreen extends HookConsumerWidget {
         leading: SizedBox.shrink(),
         leadingWidth: 0,
         title: NasteaText.heading(
-          isEditing ? "Edit Product" : "Add Product",
+          isEditing ? "Update Product" : "Create Product",
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -117,7 +119,7 @@ class ItemFormScreen extends HookConsumerWidget {
 
           const Gap(26),
 
-          NasteaText.body("Variants", fontWeight: FontWeight.w500),
+          NasteaText.body("Add Variants", fontWeight: FontWeight.w500),
           const Gap(8),
           Row(
             children: [
@@ -127,6 +129,7 @@ class ItemFormScreen extends HookConsumerWidget {
                   hintText: 'Weight (gm)',
                   maxLines: 1,
                   fillColor: Colors.white,
+                  keyboardType: TextInputType.number,
                 ),
               ),
               const Gap(12),
@@ -136,6 +139,7 @@ class ItemFormScreen extends HookConsumerWidget {
                   hintText: 'Price',
                   maxLines: 1,
                   fillColor: Colors.white,
+                  keyboardType: TextInputType.number,
                 ),
               ),
               IconButton(
