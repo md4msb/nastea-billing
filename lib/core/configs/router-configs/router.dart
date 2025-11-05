@@ -9,8 +9,10 @@ import 'package:nastea_billing/features/auth/presentation/screens/admin_login.da
 import 'package:nastea_billing/features/auth/presentation/screens/login_selection.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone-login/otp_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone-login/phone_login.dart';
+import 'package:nastea_billing/features/auth/presentation/screens/register_user.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/settings_screen.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/admin/admin_app_shell.dart';
+import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_home.dart';
 import 'package:nastea_billing/features/items/presentation/screens/items_screen.dart';
 import 'package:nastea_billing/features/users/presentation/screens/users_screen.dart';
 import 'package:nastea_billing/splash_screen.dart';
@@ -24,7 +26,7 @@ final routeProvider = Provider(
   (ref) => GoRouter(
     initialLocation: '/splash',
     errorBuilder: (context, state) =>
-         Scaffold(body: Center(child: NasteaText.body("Page not found"))),
+        Scaffold(body: Center(child: NasteaText.body("Page not found"))),
     redirect: (context, state) => handleRedirection(state, ref),
     refreshListenable: _refreshListener(ref),
     routes: [
@@ -50,6 +52,13 @@ final routeProvider = Provider(
             builder: (context, state) => const AdminLoginScreen(),
           ),
 
+          //? ---- REGISTER USER ----
+          GoRoute(
+            name: RouteNames.registerUser,
+            path: 'register',
+            builder: (context, state) => const RegisterUserScreen(),
+          ),
+
           //? ---- PHONE LOGIN ----
           GoRoute(
             name: RouteNames.phoneLogin,
@@ -60,8 +69,7 @@ final routeProvider = Provider(
               GoRoute(
                 name: RouteNames.phoneOtp,
                 path: 'otp',
-                builder: (context, state) =>
-                    const OtpScreen(verificationId: ''),
+                builder: (context, state) => const OtpScreen(),
               ),
             ],
           ),
@@ -136,6 +144,15 @@ final routeProvider = Provider(
           ),
         ],
       ),
+
+      /// -------------------------
+      //? ADMIN APP SHELL ROUTER
+      /// -------------------------
+      GoRoute(
+        name: RouteNames.distributorHome,
+        path: '/home',
+        builder: (context, state) => DistributorHomeScreen(),
+        ),
     ],
   ),
 );

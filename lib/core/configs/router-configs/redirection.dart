@@ -6,8 +6,14 @@ FutureOr<String?> handleRedirection(GoRouterState state, Ref ref) {
   final isPhoneLogin = state.matchedLocation == RouteNames.phoneLogin;
   final isPhoneOtp = state.matchedLocation == RouteNames.phoneOtp;
   final isSplash = state.matchedLocation == RouteNames.splash;
+  final isRegister = state.matchedLocation == RouteNames.registerUser;
 
-  if (isLogin || isAdminLogin || isPhoneLogin || isPhoneOtp || isSplash) {
+  if (isLogin ||
+      isAdminLogin ||
+      isPhoneLogin ||
+      isPhoneOtp ||
+      isSplash ||
+      isRegister) {
     return null;
   }
 

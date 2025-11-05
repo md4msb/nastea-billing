@@ -25,7 +25,10 @@ class AdminLoginScreen extends HookConsumerWidget {
     Future<void> onAdminSignIn() async {
       await ref
           .read(authProvider.notifier)
-          .adminSignIn(emailController.text, passwordController.text);
+          .adminSignIn(
+            emailController.text.trim(),
+            passwordController.text.trim(),
+          );
     }
 
     ref.listen(authProvider, (prev, next) {
@@ -33,7 +36,7 @@ class AdminLoginScreen extends HookConsumerWidget {
         errorSigningInAdmin: (message) {
           ErrorToaster.showError(context, message: message);
         },
-        success: (user) {
+        success: (_) {
           context.goNamed(RouteNames.adminDashboard);
         },
         orElse: () {},

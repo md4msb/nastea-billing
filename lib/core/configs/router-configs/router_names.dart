@@ -7,6 +7,7 @@ class RouteNames {
   static const adminLogin = '/login/email';
   static const phoneLogin = '/login/phone';
   static const phoneOtp = '/login/phone/otp';
+  static const registerUser = '/login/register';
 
   // ---- ADMIN APP ----
   static const adminDashboard = 'admin_dashboard';
@@ -14,8 +15,12 @@ class RouteNames {
   static const itemCreate = 'item_create';
   static const itemUpdate = 'item_udate';
   static const users = '/users';
-  static const settings = '/settings';
+  
 
+  // ---- Distributor APP ----
+  static const distributorHome = 'distributor_home';
+
+  static const settings = '/settings';
   static const String about = '/about';
   static const String contact = '/contact';
   static const String notFound = '/not-found';
