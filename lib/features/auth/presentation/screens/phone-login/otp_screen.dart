@@ -1,74 +1,72 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
+import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
+import 'package:nastea_billing/features/auth/presentation/controller/state/auth_state.dart';
+import 'package:nastea_billing/features/auth/presentation/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:nastea_billing/core/extensions/extensions.dart';
-import '../../widgets/auth_appbar.dart';
+import '../../../../../core/helpers/helpers.dart';
 
 class OtpScreen extends HookConsumerWidget {
-  final String verificationId;
-
-  const OtpScreen({super.key, required this.verificationId});
+  const OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final phoneNumber =  ref.watch(authProvider)?.phoneNumber;
-    double screenWidth = useMemoized(() => MediaQuery.of(context).size.width);
-    double availableWidth = useMemoized(() => screenWidth - 40 - 40);
-    double boxWidth = useMemoized(
-      () => (availableWidth / 6).round().toDouble(),
-    );
-    double boxHeight = useMemoized(() => (boxWidth / 0.887).round().toDouble());
-
     final otpController = useTextEditingController();
 
-    Future<void> submitOtp() async {
-      String smsCode = otpController.text.trim();
+    final phoneNumber = ref
+        .read(authProvider)
+        .mapOrNull(phoneNumberVerified: (value) => value.phoneNumber);
 
+    Future<void> submitSmsCode() async {
+      final smsCode = otpController.text.trim();
       if (smsCode.length == 6) {
-        ref
-            .read(authProvider.notifier)
-            .verifyOtp(verificationId: verificationId, smsCode: smsCode);
-      } else {
-        //todo
-        log('[input error] please enter valid 6 digit opt');
+        await ref.read(authProvider.notifier).verifyOtp(smsCode);
       }
     }
 
+    ref.listen(authProvider, (prev, next) {
+      next.maybeWhen(
+        errorSigningInUser: (message) =>
+            ErrorToaster.showError(context, message: message),
+        registerUser: () => context.goNamed(RouteNames.registerUser),
+        success: (user) => context.goNamed(RouteNames.distributorHome),
+        orElse: () {},
+      );
+    });
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final availableWidth = screenWidth - 32 - 40;
+    final boxWidth = (availableWidth / 6).round().toDouble();
+    final boxHeight = (boxWidth / 0.887).round().toDouble();
+
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AuthAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gap(25),
-
-              Icon(Icons.security_rounded),
-
-              Gap(15),
-
-              // Title
+              const Gap(25),
+              const Icon(Icons.security_rounded),
+              const Gap(15),
               NasteaText.heading(
                 "Enter your verification \ncode",
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
-
-              Gap(40),
-
-              // Subtitle
+              const Gap(40),
               NasteaText.body(
-                "We’ve sent an SMS with an activation code to your phone phoneNumber", //todo disp dynamic phone number
+                "We’ve sent an SMS with an activation code to your phone $phoneNumber",
                 color: Colors.black54,
               ),
-
-              Gap(20),
+              const Gap(20),
 
               // OTP input
               PinCodeTextField(
@@ -88,42 +86,25 @@ class OtpScreen extends HookConsumerWidget {
                   fieldHeight: boxHeight,
                   fieldWidth: boxWidth,
                   borderWidth: 1,
-                  activeBorderWidth: 1,
-                  selectedBorderWidth: 1,
-                  inactiveBorderWidth: 1,
-                  errorBorderWidth: 1,
-                  inactiveColor: Color(0xFFD8DADC),
-                  selectedColor: Colors.black,
                   activeColor: Colors.black,
+                  inactiveColor: const Color(0xFFD8DADC),
+                  selectedColor: Colors.black,
                 ),
-                onChanged: (value) {},
+                autoDisposeControllers: false,
               ),
 
-              Gap(20),
-              // Resend code text
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NasteaText.body("Send code again ", color: Colors.black54),
+              const Gap(20),
 
-                  NasteaText.body(
-                    "00:20",
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
-                ],
-              ),
+              ResendOtpButton(),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await submitOtp();
-        },
-        backgroundColor: Color(0xFF46A56C),
+        onPressed: submitSmsCode,
+        backgroundColor: const Color(0xFF46A56C),
         elevation: 2.5,
-        child: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+        child: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
       ),
     );
   }

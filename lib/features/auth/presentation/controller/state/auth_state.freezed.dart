@@ -55,7 +55,7 @@ extension AuthStatePatterns on AuthState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _SigningInAdmin value)?  signingInAdmin,TResult Function( _SigningInUser value)?  signingInUser,TResult Function( _GettingSignedInUser value)?  gettingSignedInUser,TResult Function( _VerifyingPhoneNumber value)?  verifyingPhoneNumber,TResult Function( _Success value)?  success,TResult Function( _PhoneNumberVerified value)?  phoneNumberVerified,TResult Function( _ErrorSigningInAdmin value)?  errorSigningInAdmin,TResult Function( _ErrorSigningInUser value)?  errorSigningInUser,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _SigningInAdmin value)?  signingInAdmin,TResult Function( _SigningInUser value)?  signingInUser,TResult Function( _GettingSignedInUser value)?  gettingSignedInUser,TResult Function( _VerifyingPhoneNumber value)?  verifyingPhoneNumber,TResult Function( _Success value)?  success,TResult Function( _PhoneNumberVerified value)?  phoneNumberVerified,TResult Function( _RegisterUser value)?  registerUser,TResult Function( _ErrorSigningInAdmin value)?  errorSigningInAdmin,TResult Function( _ErrorSigningInUser value)?  errorSigningInUser,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -65,7 +65,8 @@ return signingInUser(_that);case _GettingSignedInUser() when gettingSignedInUser
 return gettingSignedInUser(_that);case _VerifyingPhoneNumber() when verifyingPhoneNumber != null:
 return verifyingPhoneNumber(_that);case _Success() when success != null:
 return success(_that);case _PhoneNumberVerified() when phoneNumberVerified != null:
-return phoneNumberVerified(_that);case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
+return phoneNumberVerified(_that);case _RegisterUser() when registerUser != null:
+return registerUser(_that);case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
 return errorSigningInAdmin(_that);case _ErrorSigningInUser() when errorSigningInUser != null:
 return errorSigningInUser(_that);case _:
   return orElse();
@@ -85,7 +86,7 @@ return errorSigningInUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _SigningInAdmin value)  signingInAdmin,required TResult Function( _SigningInUser value)  signingInUser,required TResult Function( _GettingSignedInUser value)  gettingSignedInUser,required TResult Function( _VerifyingPhoneNumber value)  verifyingPhoneNumber,required TResult Function( _Success value)  success,required TResult Function( _PhoneNumberVerified value)  phoneNumberVerified,required TResult Function( _ErrorSigningInAdmin value)  errorSigningInAdmin,required TResult Function( _ErrorSigningInUser value)  errorSigningInUser,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _SigningInAdmin value)  signingInAdmin,required TResult Function( _SigningInUser value)  signingInUser,required TResult Function( _GettingSignedInUser value)  gettingSignedInUser,required TResult Function( _VerifyingPhoneNumber value)  verifyingPhoneNumber,required TResult Function( _Success value)  success,required TResult Function( _PhoneNumberVerified value)  phoneNumberVerified,required TResult Function( _RegisterUser value)  registerUser,required TResult Function( _ErrorSigningInAdmin value)  errorSigningInAdmin,required TResult Function( _ErrorSigningInUser value)  errorSigningInUser,}){
 final _that = this;
 switch (_that) {
 case _Initial():
@@ -95,7 +96,8 @@ return signingInUser(_that);case _GettingSignedInUser():
 return gettingSignedInUser(_that);case _VerifyingPhoneNumber():
 return verifyingPhoneNumber(_that);case _Success():
 return success(_that);case _PhoneNumberVerified():
-return phoneNumberVerified(_that);case _ErrorSigningInAdmin():
+return phoneNumberVerified(_that);case _RegisterUser():
+return registerUser(_that);case _ErrorSigningInAdmin():
 return errorSigningInAdmin(_that);case _ErrorSigningInUser():
 return errorSigningInUser(_that);case _:
   throw StateError('Unexpected subclass');
@@ -114,7 +116,7 @@ return errorSigningInUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _SigningInAdmin value)?  signingInAdmin,TResult? Function( _SigningInUser value)?  signingInUser,TResult? Function( _GettingSignedInUser value)?  gettingSignedInUser,TResult? Function( _VerifyingPhoneNumber value)?  verifyingPhoneNumber,TResult? Function( _Success value)?  success,TResult? Function( _PhoneNumberVerified value)?  phoneNumberVerified,TResult? Function( _ErrorSigningInAdmin value)?  errorSigningInAdmin,TResult? Function( _ErrorSigningInUser value)?  errorSigningInUser,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _SigningInAdmin value)?  signingInAdmin,TResult? Function( _SigningInUser value)?  signingInUser,TResult? Function( _GettingSignedInUser value)?  gettingSignedInUser,TResult? Function( _VerifyingPhoneNumber value)?  verifyingPhoneNumber,TResult? Function( _Success value)?  success,TResult? Function( _PhoneNumberVerified value)?  phoneNumberVerified,TResult? Function( _RegisterUser value)?  registerUser,TResult? Function( _ErrorSigningInAdmin value)?  errorSigningInAdmin,TResult? Function( _ErrorSigningInUser value)?  errorSigningInUser,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
@@ -124,7 +126,8 @@ return signingInUser(_that);case _GettingSignedInUser() when gettingSignedInUser
 return gettingSignedInUser(_that);case _VerifyingPhoneNumber() when verifyingPhoneNumber != null:
 return verifyingPhoneNumber(_that);case _Success() when success != null:
 return success(_that);case _PhoneNumberVerified() when phoneNumberVerified != null:
-return phoneNumberVerified(_that);case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
+return phoneNumberVerified(_that);case _RegisterUser() when registerUser != null:
+return registerUser(_that);case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
 return errorSigningInAdmin(_that);case _ErrorSigningInUser() when errorSigningInUser != null:
 return errorSigningInUser(_that);case _:
   return null;
@@ -143,7 +146,7 @@ return errorSigningInUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  signingInAdmin,TResult Function()?  signingInUser,TResult Function()?  gettingSignedInUser,TResult Function()?  verifyingPhoneNumber,TResult Function( User user)?  success,TResult Function()?  phoneNumberVerified,TResult Function( String message)?  errorSigningInAdmin,TResult Function( String message)?  errorSigningInUser,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  signingInAdmin,TResult Function()?  signingInUser,TResult Function()?  gettingSignedInUser,TResult Function()?  verifyingPhoneNumber,TResult Function( User user)?  success,TResult Function( String phoneNumber)?  phoneNumberVerified,TResult Function()?  registerUser,TResult Function( String message)?  errorSigningInAdmin,TResult Function( String message)?  errorSigningInUser,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _SigningInAdmin() when signingInAdmin != null:
@@ -152,7 +155,8 @@ return signingInUser();case _GettingSignedInUser() when gettingSignedInUser != n
 return gettingSignedInUser();case _VerifyingPhoneNumber() when verifyingPhoneNumber != null:
 return verifyingPhoneNumber();case _Success() when success != null:
 return success(_that.user);case _PhoneNumberVerified() when phoneNumberVerified != null:
-return phoneNumberVerified();case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
+return phoneNumberVerified(_that.phoneNumber);case _RegisterUser() when registerUser != null:
+return registerUser();case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
 return errorSigningInAdmin(_that.message);case _ErrorSigningInUser() when errorSigningInUser != null:
 return errorSigningInUser(_that.message);case _:
   return orElse();
@@ -172,7 +176,7 @@ return errorSigningInUser(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  signingInAdmin,required TResult Function()  signingInUser,required TResult Function()  gettingSignedInUser,required TResult Function()  verifyingPhoneNumber,required TResult Function( User user)  success,required TResult Function()  phoneNumberVerified,required TResult Function( String message)  errorSigningInAdmin,required TResult Function( String message)  errorSigningInUser,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  signingInAdmin,required TResult Function()  signingInUser,required TResult Function()  gettingSignedInUser,required TResult Function()  verifyingPhoneNumber,required TResult Function( User user)  success,required TResult Function( String phoneNumber)  phoneNumberVerified,required TResult Function()  registerUser,required TResult Function( String message)  errorSigningInAdmin,required TResult Function( String message)  errorSigningInUser,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _SigningInAdmin():
@@ -181,7 +185,8 @@ return signingInUser();case _GettingSignedInUser():
 return gettingSignedInUser();case _VerifyingPhoneNumber():
 return verifyingPhoneNumber();case _Success():
 return success(_that.user);case _PhoneNumberVerified():
-return phoneNumberVerified();case _ErrorSigningInAdmin():
+return phoneNumberVerified(_that.phoneNumber);case _RegisterUser():
+return registerUser();case _ErrorSigningInAdmin():
 return errorSigningInAdmin(_that.message);case _ErrorSigningInUser():
 return errorSigningInUser(_that.message);case _:
   throw StateError('Unexpected subclass');
@@ -200,7 +205,7 @@ return errorSigningInUser(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  signingInAdmin,TResult? Function()?  signingInUser,TResult? Function()?  gettingSignedInUser,TResult? Function()?  verifyingPhoneNumber,TResult? Function( User user)?  success,TResult? Function()?  phoneNumberVerified,TResult? Function( String message)?  errorSigningInAdmin,TResult? Function( String message)?  errorSigningInUser,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  signingInAdmin,TResult? Function()?  signingInUser,TResult? Function()?  gettingSignedInUser,TResult? Function()?  verifyingPhoneNumber,TResult? Function( User user)?  success,TResult? Function( String phoneNumber)?  phoneNumberVerified,TResult? Function()?  registerUser,TResult? Function( String message)?  errorSigningInAdmin,TResult? Function( String message)?  errorSigningInUser,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _SigningInAdmin() when signingInAdmin != null:
@@ -209,7 +214,8 @@ return signingInUser();case _GettingSignedInUser() when gettingSignedInUser != n
 return gettingSignedInUser();case _VerifyingPhoneNumber() when verifyingPhoneNumber != null:
 return verifyingPhoneNumber();case _Success() when success != null:
 return success(_that.user);case _PhoneNumberVerified() when phoneNumberVerified != null:
-return phoneNumberVerified();case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
+return phoneNumberVerified(_that.phoneNumber);case _RegisterUser() when registerUser != null:
+return registerUser();case _ErrorSigningInAdmin() when errorSigningInAdmin != null:
 return errorSigningInAdmin(_that.message);case _ErrorSigningInUser() when errorSigningInUser != null:
 return errorSigningInUser(_that.message);case _:
   return null;
@@ -449,7 +455,73 @@ as User,
 
 
 class _PhoneNumberVerified implements AuthState {
-  const _PhoneNumberVerified();
+  const _PhoneNumberVerified(this.phoneNumber);
+  
+
+ final  String phoneNumber;
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PhoneNumberVerifiedCopyWith<_PhoneNumberVerified> get copyWith => __$PhoneNumberVerifiedCopyWithImpl<_PhoneNumberVerified>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PhoneNumberVerified&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,phoneNumber);
+
+@override
+String toString() {
+  return 'AuthState.phoneNumberVerified(phoneNumber: $phoneNumber)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PhoneNumberVerifiedCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
+  factory _$PhoneNumberVerifiedCopyWith(_PhoneNumberVerified value, $Res Function(_PhoneNumberVerified) _then) = __$PhoneNumberVerifiedCopyWithImpl;
+@useResult
+$Res call({
+ String phoneNumber
+});
+
+
+
+
+}
+/// @nodoc
+class __$PhoneNumberVerifiedCopyWithImpl<$Res>
+    implements _$PhoneNumberVerifiedCopyWith<$Res> {
+  __$PhoneNumberVerifiedCopyWithImpl(this._self, this._then);
+
+  final _PhoneNumberVerified _self;
+  final $Res Function(_PhoneNumberVerified) _then;
+
+/// Create a copy of AuthState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? phoneNumber = null,}) {
+  return _then(_PhoneNumberVerified(
+null == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _RegisterUser implements AuthState {
+  const _RegisterUser();
   
 
 
@@ -459,7 +531,7 @@ class _PhoneNumberVerified implements AuthState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PhoneNumberVerified);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegisterUser);
 }
 
 
@@ -468,7 +540,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AuthState.phoneNumberVerified()';
+  return 'AuthState.registerUser()';
 }
 
 

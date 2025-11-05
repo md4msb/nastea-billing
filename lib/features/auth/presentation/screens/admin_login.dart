@@ -36,7 +36,7 @@ class AdminLoginScreen extends HookConsumerWidget {
         errorSigningInAdmin: (message) {
           ErrorToaster.showError(context, message: message);
         },
-        success: (user) {
+        success: (_) {
           context.goNamed(RouteNames.adminDashboard);
         },
         orElse: () {},

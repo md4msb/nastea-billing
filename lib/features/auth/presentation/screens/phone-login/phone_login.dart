@@ -29,7 +29,7 @@ class PhoneLoginScreen extends HookConsumerWidget {
       next.maybeWhen(
         errorSigningInUser: (message) =>
             ErrorToaster.showError(context, message: message),
-        phoneNumberVerified: () => context.goNamed(RouteNames.phoneOtp),
+        phoneNumberVerified: (_) => context.pushNamed(RouteNames.phoneOtp),
         orElse: () {},
       );
     });

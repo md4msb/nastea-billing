@@ -87,18 +87,10 @@ class FirebaseAuthDataSource implements AuthDataSource {
         smsCode: smsCode,
       );
 
-      // Sign in the user with the credential
-      /* final cred = */
-      await _firebaseAuth.signInWithCredential(credential);
-      // if (cred.user == null) {
-      //   throw Exception('User not created');
-      // }
-
-      // final userId = cred.user?.uid;
-      // await _firestore
-      //     .collection('users')
-      //     .doc(userId)
-      //     .set(fireBaseUser.toDoc());
+      final cred =await _firebaseAuth.signInWithCredential(credential);
+      if (cred.user == null) {
+        throw Exception('User not created');
+      }
     } catch (e) {
       rethrow;
     }
