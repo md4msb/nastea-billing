@@ -41,7 +41,7 @@ final class ItemsNotifierProvider
   }
 }
 
-String _$itemsNotifierHash() => r'959e63ca3333ca5063833a6d082841b9dd70ecc7';
+String _$itemsNotifierHash() => r'798d68c9980cbd598c09b8426d6609f4ac2b25ed';
 
 abstract class _$ItemsNotifier extends $Notifier<ItemsState> {
   ItemsState build();

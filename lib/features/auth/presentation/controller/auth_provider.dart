@@ -10,6 +10,8 @@ part 'auth_provider.g.dart';
 class AuthNotifier extends _$AuthNotifier {
   late final AuthRepo _authRepo;
 
+  late String _phoneVerificationId;
+
   @override
   AuthState build() {
     _authRepo = ref.read(authRepositoryProvider);
@@ -37,19 +39,16 @@ class AuthNotifier extends _$AuthNotifier {
     );
   }
 
-  // User? _loadUser() {
-  //   final fbUser = _auth.currentUser;
-  //   if (fbUser != null) {
-  //     log('[load user]  success');
-  //     return User(
-  //       id: fbUser.uid,
-  //       phoneNumber: fbUser.phoneNumber ?? '',
-  //       name: fbUser.displayName,
-  //       isAuthenticated: true,
-  //     );
-  //   }
-  //   return null;
-  // }
+  Future<void> verifyPhoneNumber(String phoneNumber) async {
+    state = const AuthState.verifyingPhoneNumber();
+
+    final result = await _authRepo.verifyPhoneNumber(phoneNumber);
+
+    state = result.fold((error) => AuthState.errorSigningInUser(error), (id) {
+      _phoneVerificationId = id;
+      return AuthState.phoneNumberVerified();
+    });
+  }
 
   // bool _validatePhoneNumber(String phone) {
   //   final regex = RegExp(r'^[0-9]{10}$');

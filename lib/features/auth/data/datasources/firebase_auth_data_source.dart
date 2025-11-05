@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:nastea_billing/core/extensions/extensions.dart';
@@ -47,18 +49,29 @@ class FirebaseAuthDataSource implements AuthDataSource {
   }
 
   @override
-  Future<void> verifyPhoneNumber(String phoneNumber) async {
+  Future<String> verifyPhoneNumber(String phoneNumber) async {
     try {
+      final completer = Completer<String>();
+
       await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 20),
         verificationCompleted: (PhoneAuthCredential credential) {},
-        verificationFailed: (FirebaseAuthException error) {
-          throw error;
+
+        verificationFailed: (FirebaseAuthException e) {
+          if (!completer.isCompleted) completer.completeError(e);
         },
-        codeSent: (verificationId, forceResendingToken) {},
-        codeAutoRetrievalTimeout: (verificationId) {},
+        codeSent: (String verificationId, int? resendToken) {
+          if (!completer.isCompleted) completer.complete(verificationId);
+        },
+
+        codeAutoRetrievalTimeout: (String verificationId) {
+          if (!completer.isCompleted) completer.complete(verificationId);
+        },
       );
-    } catch (e) {
+
+      return completer.future;
+    } catch (_) {
       rethrow;
     }
   }

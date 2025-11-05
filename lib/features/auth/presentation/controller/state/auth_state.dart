@@ -12,9 +12,15 @@ class AuthState with _$AuthState {
   const factory AuthState.signingInAdmin() = _SigningInAdmin;
   const factory AuthState.signingInUser() = _SigningInUser;
   const factory AuthState.gettingSignedInUser() = _GettingSignedInUser;
+  const factory AuthState.verifyingPhoneNumber() = _VerifyingPhoneNumber;
+
+
   //// success states
   const factory AuthState.success(User user) = _Success;
+  const factory AuthState.phoneNumberVerified() = _PhoneNumberVerified;
+
+
   //// error states
   const factory AuthState.errorSigningInAdmin(String message) = _ErrorSigningInAdmin;
-  const factory AuthState.errorSigningInUser(String message) = _ErrorSigningInSigningInUser;
+  const factory AuthState.errorSigningInUser(String message) = _ErrorSigningInUser;
 }

@@ -37,13 +37,10 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<String, Unit>> verifyPhoneNumber(String phoneNumber) async {
+  Future<Either<String, String>> verifyPhoneNumber(String phoneNumber) async {
     try {
-
-      // await authDataSource.
-      return Right(unit);
-
-
+      final result = await authDataSource.verifyPhoneNumber(phoneNumber);
+      return Right(result);
     } catch (e, stackTrace) {
       final message = handleError(e, stackTrace);
       return Left(message);

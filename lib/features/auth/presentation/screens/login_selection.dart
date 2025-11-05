@@ -62,9 +62,7 @@ class LoginSelectionScreen extends StatelessWidget {
         if (type == 'Email') {
           ctx.pushNamed(RouteNames.adminLogin);
         } else {
-          // Navigator.of(
-          //   ctx,
-          // ).push(MaterialPageRoute(builder: (context) => PhoneLoginScreen()));
+          ctx.pushNamed(RouteNames.phoneLogin);
         }
       },
       child: Container(
