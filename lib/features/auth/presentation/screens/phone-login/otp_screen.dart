@@ -40,7 +40,7 @@ class OtpScreen extends HookConsumerWidget {
     });
 
     final screenWidth = MediaQuery.of(context).size.width;
-    final availableWidth = screenWidth - 32 - 40;
+    final availableWidth = screenWidth - 50 - 40;
     final boxWidth = (availableWidth / 6).round().toDouble();
     final boxHeight = (boxWidth / 0.887).round().toDouble();
 
@@ -49,7 +49,7 @@ class OtpScreen extends HookConsumerWidget {
       appBar: AuthAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -85,16 +85,16 @@ class OtpScreen extends HookConsumerWidget {
                   borderRadius: BorderRadius.circular(15),
                   fieldHeight: boxHeight,
                   fieldWidth: boxWidth,
-                  borderWidth: 1,
-                  activeColor: Colors.black,
+                  selectedBorderWidth: 1.2,
+                  activeBorderWidth: 1.2,
+                  inactiveBorderWidth: 1,
+                  activeColor: Colors.black87,
                   inactiveColor: const Color(0xFFD8DADC),
-                  selectedColor: Colors.black,
+                  selectedColor: Colors.black87,
                 ),
                 autoDisposeControllers: false,
               ),
-
               const Gap(20),
-
               ResendOtpButton(),
             ],
           ),

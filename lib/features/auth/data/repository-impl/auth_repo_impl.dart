@@ -71,4 +71,21 @@ class AuthRepoImpl implements AuthRepo {
       return Left(message);
     }
   }
+
+  @override
+  bool checkUserAuthenticated() {
+    return authDataSource.checkUserAuthenticated();
+  }
+
+  @override
+  Future<Either<String, User>> registerUser(String displayName) async {
+    try {
+      await authDataSource.registerUser(displayName);
+      final fetchedUser = await authDataSource.getLoggedInUser();
+      return Right(fetchedUser);
+    } catch (e, stackTrace) {
+      final message = handleError(e, stackTrace);
+      return Left(message);
+    }
+  }
 }

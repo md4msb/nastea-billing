@@ -3,23 +3,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseUser extends User {
   const FirebaseUser({
-    super.id,
-    super.phoneNumber,
-    super.name,
+    required super.id,
+    required super.phoneNumber,
+    required super.name,
     super.email,
-    super.role,
-    super.isAuthenticated,
+    required super.role,
+    required super.appAccess,
   });
 
   //from Doc
   factory FirebaseUser.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
     return FirebaseUser(
-      id: data?['id'] as String? ?? '',
-      phoneNumber: data?['phone_number'] as String? ?? '',
-      name: data?['name'] as String? ?? '',
-      email: data?['email'] as String? ?? '',
-      role: data?['role'] as String? ?? '',
+      id: data?['id'] ?? '',
+      phoneNumber: data?['phone_number'] ?? '',
+      name: data?['name'] ?? '',
+      email: data?['email'] ?? '',
+      role: data?['role'] ?? '',
+      appAccess: data?['app_access'] ?? '',
     );
   }
 
@@ -31,16 +32,18 @@ class FirebaseUser extends User {
       'name': name,
       'email': email,
       'role': role,
+      'app_access': appAccess,
     };
   }
 
   factory FirebaseUser.fromEntity(User user) {
     return FirebaseUser(
-      id: user.id ?? "",
-      phoneNumber: user.phoneNumber ?? "",
-      name: user.name ?? "",
+      id: user.id,
+      phoneNumber: user.phoneNumber,
+      name: user.name,
       email: user.email ?? "",
-      role: user.role ?? '',
+      role: user.role,
+      appAccess: user.appAccess,
     );
   }
 }

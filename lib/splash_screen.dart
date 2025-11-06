@@ -14,7 +14,7 @@ class SplashScreen extends HookConsumerWidget {
         if (!context.mounted) {
           return;
         }
-        _getCurrentUser(ref, context);
+        _handleRedirection(ref, context);
       });
       return null;
     }, []);
@@ -31,14 +31,23 @@ class SplashScreen extends HookConsumerWidget {
     );
   }
 
-  void _getCurrentUser(WidgetRef ref, BuildContext context) async {
+  void _handleRedirection(WidgetRef ref, BuildContext context) async {
     final user = await ref.read(authProvider.notifier).getSignedInUser();
     if (!context.mounted) return;
     if (user != null) {
       if (user.role == 'admin') {
         context.goNamed(RouteNames.adminDashboard);
+      } else {
+        context.goNamed(RouteNames.distributorHome);
       }
     } else {
+      final isAuthenticated = ref
+          .read(authProvider.notifier)
+          .isUserAuthenticated();
+      if (isAuthenticated) {
+        context.goNamed(RouteNames.registerUser);
+        return;
+      }
       context.goNamed(RouteNames.login);
     }
   }

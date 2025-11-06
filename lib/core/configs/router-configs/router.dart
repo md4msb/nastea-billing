@@ -9,7 +9,7 @@ import 'package:nastea_billing/features/auth/presentation/screens/admin_login.da
 import 'package:nastea_billing/features/auth/presentation/screens/login_selection.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone-login/otp_screen.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/phone-login/phone_login.dart';
-import 'package:nastea_billing/features/auth/presentation/screens/register_user.dart';
+import 'package:nastea_billing/features/auth/presentation/screens/phone-login/register_user.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/settings_screen.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/admin/admin_app_shell.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_home.dart';
@@ -52,13 +52,6 @@ final routeProvider = Provider(
             builder: (context, state) => const AdminLoginScreen(),
           ),
 
-          //? ---- REGISTER USER ----
-          GoRoute(
-            name: RouteNames.registerUser,
-            path: 'register',
-            builder: (context, state) => const RegisterUserScreen(),
-          ),
-
           //? ---- PHONE LOGIN ----
           GoRoute(
             name: RouteNames.phoneLogin,
@@ -74,6 +67,12 @@ final routeProvider = Provider(
             ],
           ),
         ],
+      ),
+      //? ---- REGISTER USER ----
+      GoRoute(
+        name: RouteNames.registerUser,
+        path: '/register-user',
+        builder: (context, state) => const RegisterUserScreen(),
       ),
 
       /// -------------------------
@@ -152,7 +151,7 @@ final routeProvider = Provider(
         name: RouteNames.distributorHome,
         path: '/home',
         builder: (context, state) => DistributorHomeScreen(),
-        ),
+      ),
     ],
   ),
 );
