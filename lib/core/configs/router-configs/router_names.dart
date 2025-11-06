@@ -7,7 +7,7 @@ class RouteNames {
   static const adminLogin = '/login/email';
   static const phoneLogin = '/login/phone';
   static const phoneOtp = '/login/phone/otp';
-  static const registerUser = '/login/register';
+  static const registerUser = '/register-user';
 
   // ---- ADMIN APP ----
   static const adminDashboard = 'admin_dashboard';

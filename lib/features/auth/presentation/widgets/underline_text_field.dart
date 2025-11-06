@@ -10,6 +10,7 @@ class UnderlineTextField extends StatelessWidget {
   final bool canRequestFocus;
   final String? initialValue;
   final String? hintText;
+  final TextStyle? hintStyle;
 
   const UnderlineTextField({
     super.key,
@@ -21,6 +22,7 @@ class UnderlineTextField extends StatelessWidget {
     this.canRequestFocus = true,
     this.initialValue,
     this.hintText,
+    this.hintStyle,
   });
 
   @override
@@ -28,18 +30,20 @@ class UnderlineTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
+      autocorrect: false,
       maxLines: 1,
       maxLength: maxLength,
       autofocus: autofocus,
       cursorColor: Colors.black,
-      cursorHeight: 26,
+      cursorHeight: 32,
       cursorWidth: 1.5,
       readOnly: readOnly,
       canRequestFocus: canRequestFocus,
       initialValue: initialValue,
-      style: NasteaTextStyles.body(fontSize: 24, fontWeight: FontWeight.w600),
+      style: NasteaTextStyles.body(fontSize: 26, fontWeight: FontWeight.w600),
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: hintStyle,
         contentPadding: EdgeInsets.all(0),
         isDense: true,
         counterText: '',

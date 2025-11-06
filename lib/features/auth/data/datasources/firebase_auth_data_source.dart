@@ -37,6 +37,12 @@ class FirebaseAuthDataSource implements AuthDataSource {
   }
 
   @override
+  bool checkUserAuthenticated() {
+    final isAuthenticated = _firebaseAuth.currentUser != null;
+    return isAuthenticated;
+  }
+
+  @override
   Future<void> logInWithEmailAndPassword(String email, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
@@ -87,7 +93,7 @@ class FirebaseAuthDataSource implements AuthDataSource {
         smsCode: smsCode,
       );
 
-      final cred =await _firebaseAuth.signInWithCredential(credential);
+      final cred = await _firebaseAuth.signInWithCredential(credential);
       if (cred.user == null) {
         throw Exception('User not created');
       }
@@ -100,6 +106,26 @@ class FirebaseAuthDataSource implements AuthDataSource {
   Future<void> logOut() async {
     try {
       return await _firebaseAuth.signOut();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> registerUser(String displayName) async {
+    try {
+      final authUser = _firebaseAuth.currentUser;
+      if (authUser == null) {
+        throw Exception('User not found');
+      }
+      final user = FirebaseUser(
+        id: authUser.uid,
+        phoneNumber: authUser.phoneNumber ?? '',
+        name: displayName,
+        role: 'distributor',
+        appAccess: 'requested'
+      );
+      await _firestore.userDocument(user.id).set(user.toDoc());
     } catch (e) {
       rethrow;
     }

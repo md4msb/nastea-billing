@@ -19,6 +19,10 @@ class AuthNotifier extends _$AuthNotifier {
     return AuthState.initial();
   }
 
+  bool isUserAuthenticated() {
+    return _authRepo.checkUserAuthenticated();
+  }
+
   Future<User?> getSignedInUser({bool useLoading = false}) async {
     if (useLoading) state = AuthState.gettingSignedInUser();
     final result = await _authRepo.getLoggedInUser();
@@ -64,6 +68,17 @@ class AuthNotifier extends _$AuthNotifier {
     if (user == null) {
       state = AuthState.registerUser();
     }
+  }
+
+  Future<void> registerUser(String displayName) async {
+    state = const AuthState.signingInUser();
+
+    final result = await _authRepo.registerUser(displayName);
+
+    state = result.fold(
+      (error) => AuthState.errorSigningInUser(error),
+      (user) => AuthState.success(user),
+    );
   }
 
   Future<void> logOut() async {

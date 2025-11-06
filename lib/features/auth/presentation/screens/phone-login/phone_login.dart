@@ -39,7 +39,7 @@ class PhoneLoginScreen extends HookConsumerWidget {
       appBar: AuthAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,7 +71,7 @@ class PhoneLoginScreen extends HookConsumerWidget {
     return Row(
       children: [
         SizedBox(
-          width: 45,
+          width: 55,
           child: UnderlineTextField(
             readOnly: true,
             canRequestFocus: false,
