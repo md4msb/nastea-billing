@@ -38,7 +38,7 @@ class SplashScreen extends HookConsumerWidget {
       if (user.role == 'admin') {
         context.goNamed(RouteNames.adminDashboard);
       } else {
-        context.goNamed(RouteNames.distributorHome);
+        context.goNamed(RouteNames.distributorAccessGate);
       }
     } else {
       final isAuthenticated = ref

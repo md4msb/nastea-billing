@@ -12,6 +12,7 @@ import 'package:nastea_billing/features/auth/presentation/screens/phone-login/ph
 import 'package:nastea_billing/features/auth/presentation/screens/phone-login/register_user.dart';
 import 'package:nastea_billing/features/auth/presentation/screens/settings_screen.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/admin/admin_app_shell.dart';
+import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_access_gate.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_home.dart';
 import 'package:nastea_billing/features/items/presentation/screens/items_screen.dart';
 import 'package:nastea_billing/features/users/presentation/screens/users_screen.dart';
@@ -145,12 +146,17 @@ final routeProvider = Provider(
       ),
 
       /// -------------------------
-      //? ADMIN APP SHELL ROUTER
+      //? DISTRIBUTOR APP SHELL ROUTER
       /// -------------------------
       GoRoute(
         name: RouteNames.distributorHome,
         path: '/home',
         builder: (context, state) => DistributorHomeScreen(),
+      ),
+      GoRoute(
+        name: RouteNames.distributorAccessGate,
+        path: '/access-gate',
+        builder: (context, state) => DistributorAccessGate(),
       ),
     ],
   ),
