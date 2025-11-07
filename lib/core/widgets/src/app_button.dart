@@ -55,7 +55,7 @@ class AppButton extends HookWidget {
                   color: Colors.white,
                 ),
               )
-            : NasteaText.body(text),
+            : NasteaText.body(text, fontWeight: FontWeight.w500),
       ),
     );
   }

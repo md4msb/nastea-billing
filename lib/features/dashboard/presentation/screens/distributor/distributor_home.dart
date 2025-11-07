@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
+import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
 
-class DistributorHomeScreen extends StatelessWidget {
+class DistributorHomeScreen extends ConsumerWidget {
   const DistributorHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: NasteaText.heading('Nastea'),
         actions: [
-          Container(
-            width: 38,
-            height: 38,
-            margin: const EdgeInsets.only(right: 15),
-            decoration: BoxDecoration(
-              color: Color(0xFFF5F7F9),
-              shape: BoxShape.circle,
-              border: Border.all(color: Color(0xFFD8DADC), width: 1),
+          GestureDetector(
+            onTap: () {
+              ref.read(authProvider.notifier).logOut();
+            },
+            child: Container(
+              width: 38,
+              height: 38,
+              margin: const EdgeInsets.only(right: 15),
+              decoration: BoxDecoration(
+                color: Color(0xFFF5F7F9),
+                shape: BoxShape.circle,
+                border: Border.all(color: Color(0xFFD8DADC), width: 1),
+              ),
+              child: Center(child: Icon(Icons.notifications_none_rounded)),
             ),
-            child: Center(child: Icon(Icons.notifications_none_rounded)),
           ),
         ],
       ),

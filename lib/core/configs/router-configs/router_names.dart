@@ -18,6 +18,7 @@ class RouteNames {
   
 
   // ---- Distributor APP ----
+  static const distributorAccessGate = 'distributor_access_gate';
   static const distributorHome = 'distributor_home';
 
   static const settings = '/settings';
