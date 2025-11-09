@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:nastea_billing/core/domain/entities/user_entity.dart';
 import 'package:nastea_billing/core/handlers/error-handler/error_handler.dart';
-import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../datasources/auth_data_source.dart';
 

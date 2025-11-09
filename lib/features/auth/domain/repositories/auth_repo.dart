@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import '../entities/user.dart';
+import 'package:nastea_billing/core/domain/entities/user_entity.dart';
 
 abstract class AuthRepo {
   Future<Either<String, User>> logInWithEmailAndPassword(String email, String password);
