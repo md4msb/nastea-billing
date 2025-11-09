@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nastea_billing/core/domain/entities/user_entity.dart';
 
-import '../../../domain/entities/user.dart';
 part 'auth_state.freezed.dart';
 
 

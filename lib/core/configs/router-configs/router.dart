@@ -15,7 +15,7 @@ import 'package:nastea_billing/features/dashboard/presentation/screens/admin/adm
 import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_access_gate.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_home.dart';
 import 'package:nastea_billing/features/items/presentation/screens/items_screen.dart';
-import 'package:nastea_billing/features/users/presentation/screens/users_screen.dart';
+import 'package:nastea_billing/features/users-management/presentation/screens/users_screen.dart';
 import 'package:nastea_billing/splash_screen.dart';
 import '../../../features/dashboard/presentation/screens/admin/admin_home.dart';
 import '../../../features/items/presentation/screens/item_form_screen.dart';

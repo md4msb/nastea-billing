@@ -1,5 +1,5 @@
+import 'package:nastea_billing/core/domain/entities/user_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../domain/entities/user.dart';
 import 'state/auth_state.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../di/injection.dart';

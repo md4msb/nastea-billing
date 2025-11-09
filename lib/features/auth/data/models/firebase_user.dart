@@ -1,5 +1,5 @@
-import '../../domain/entities/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nastea_billing/core/domain/entities/user_entity.dart';
 
 class FirebaseUser extends User {
   const FirebaseUser({

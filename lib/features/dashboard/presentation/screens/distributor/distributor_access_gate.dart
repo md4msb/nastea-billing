@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
+import 'package:nastea_billing/features/auth/presentation/controller/auth_provider.dart';
 import 'package:nastea_billing/features/dashboard/presentation/screens/distributor/distributor_home.dart';
 
 class DistributorAccessGate extends HookConsumerWidget {
@@ -33,12 +34,12 @@ class DistributorAccessGate extends HookConsumerWidget {
                 horizontal: 20,
                 vertical: 40,
               ),
-              child: accessGateTemplate(accessType),
+              child: accessGateTemplate(accessType, ref),
             ),
           );
   }
 
-  Column accessGateTemplate(String accessType) {
+  Column accessGateTemplate(String accessType, WidgetRef ref) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
@@ -104,7 +105,9 @@ class DistributorAccessGate extends HookConsumerWidget {
           text: (accessType == 'requested')
               ? "Refresh Status"
               : "Request Access",
-          onPressed: () {},
+          onPressed: () {
+            ref.read(authProvider.notifier).logOut();
+          },
         ),
         Spacer(),
         Text.rich(

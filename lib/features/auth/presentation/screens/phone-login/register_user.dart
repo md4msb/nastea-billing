@@ -42,7 +42,7 @@ class RegisterUserScreen extends HookConsumerWidget {
       next.maybeWhen(
         errorSigningInUser: (message) =>
             ErrorToaster.showError(context, message: message),
-        success: (user) => context.goNamed(RouteNames.distributorHome),
+        success: (user) => context.goNamed(RouteNames.distributorAccessGate),
         orElse: () {},
       );
     });
