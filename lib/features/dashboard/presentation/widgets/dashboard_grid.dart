@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nastea_billing/core/configs/router-configs/router_names.dart';
 import 'package:nastea_billing/core/extensions/extensions.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
+import 'package:nastea_billing/features/users-management/presentation/controllers/users_provider.dart';
 import '../../../items/presentation/controller/items_provider.dart';
 
 class DashboardGrid extends HookConsumerWidget {
@@ -12,6 +13,7 @@ class DashboardGrid extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsState = ref.watch(itemsProvider);
+    final usersState = ref.watch(usersProvider);
 
     return GridView.count(
       crossAxisCount: 2,
@@ -22,9 +24,10 @@ class DashboardGrid extends HookConsumerWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         DashboardCard(
+          onTap: () => context.goNamed(RouteNames.users),
           icon: Icons.people_outline,
           label: 'Users',
-          value: '6',
+          value: (usersState.users.length.toString()),
           backgroundColor: Color(0xFF46A56C).faded(0.8),
           foregroundColor: Colors.white,
         ),
@@ -36,9 +39,7 @@ class DashboardGrid extends HookConsumerWidget {
           foregroundColor: Colors.white,
         ),
         DashboardCard(
-          onTap: () {
-            context.goNamed(RouteNames.items);
-          },
+          onTap: () => context.goNamed(RouteNames.items),
           icon: Icons.inventory_2_outlined,
           label: 'Products',
           value: (itemsState.items.length).toString(),

@@ -3,8 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:nastea_billing/core/widgets/widgets.dart';
 import 'package:nastea_billing/features/dashboard/presentation/widgets/dashboard_grid.dart';
 import 'package:nastea_billing/features/dashboard/presentation/widgets/dashboard_items.dart';
-
-import 'admin_app_shell.dart';
+import '../../../../../core/configs/router-configs/router_names.dart';
+import '../../widgets/pending_approvals_insight.dart';
+import '../../widgets/section_header.dart';
 
 class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});
@@ -12,8 +13,10 @@ class AdminHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFBFDFB),
+      backgroundColor: Color.fromRGBO(251, 253, 251, 1),
       appBar: AppBar(
+        backgroundColor: Color(0xFFFBFDFB),
+        elevation: 0,
         title: Row(
           children: [
             CircleAvatar(
@@ -31,8 +34,6 @@ class AdminHomeScreen extends StatelessWidget {
             onPressed: () {},
           ),
         ],
-        backgroundColor: Color(0xFFFBFDFB),
-        elevation: 0,
       ),
 
       // 🌿 Main Content
@@ -47,24 +48,7 @@ class AdminHomeScreen extends StatelessWidget {
             const Gap(24),
 
             // SECTION 2: PENDING APPROVALS
-            SectionHeader(
-              title: 'Pending Approvals',
-              actionText: 'View All',
-              onActionTap: () {},
-            ),
-            const Gap(8),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: [
-                  const PendingUserTile(name: 'Arjun P.', phone: '99282438'),
-                  const PendingUserTile(name: 'Mishal K.', phone: '70523949'),
-                ],
-              ),
-            ),
+            const PendingApprovalsInsight(),
 
             const Gap(24),
 
@@ -72,7 +56,7 @@ class AdminHomeScreen extends StatelessWidget {
             SectionHeader(
               title: 'Recent Items',
               actionText: 'Add Product',
-              onActionTap: () {},
+              onTap: () => context.goNamed(RouteNames.itemCreate),
             ),
             const Gap(8),
             DashboardItems(),

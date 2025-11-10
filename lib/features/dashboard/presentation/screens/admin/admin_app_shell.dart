@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class AdminAppShell extends HookWidget {
   const AdminAppShell({super.key, required this.navigationShell});
@@ -36,82 +35,6 @@ class AdminAppShell extends HookWidget {
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),
             label: 'Settings',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SectionHeader extends StatelessWidget {
-  final String title;
-  final String actionText;
-  final VoidCallback onActionTap;
-
-  const SectionHeader({
-    super.key,
-    required this.title,
-    required this.actionText,
-    required this.onActionTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        NasteaText.body(
-          title,
-          fontWeight: FontWeight.w600,
-          color: Colors.black87,
-        ),
-
-        GestureDetector(
-          onTap: onActionTap,
-          child: NasteaText.body(
-            actionText,
-            color: Color(0xFF146356),
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class PendingUserTile extends StatelessWidget {
-  final String name;
-  final String phone;
-
-  const PendingUserTile({super.key, required this.name, required this.phone});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: const Color(0xFFE6F4EA),
-        child: NasteaText.body(name[0], color: Color(0xFF146356)),
-      ),
-      title: NasteaText.body(name, fontWeight: FontWeight.w600),
-      subtitle: NasteaText.body(phone),
-      trailing: Wrap(
-        spacing: 8,
-        children: [
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: Colors.redAccent),
-              foregroundColor: Colors.redAccent,
-            ),
-            child: NasteaText.body('Reject'),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF146356),
-              foregroundColor: Colors.white,
-            ),
-            child: NasteaText.body('Approve'),
           ),
         ],
       ),
