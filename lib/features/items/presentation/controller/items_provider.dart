@@ -30,7 +30,7 @@ class ItemsNotifier extends _$ItemsNotifier {
       (items) {
         _cachedItems = items;
         return ItemsState(items: _cachedItems, isLoading: false);
-      },
+      },  
     );
   }
 
