@@ -24,7 +24,9 @@ class FirebaseUsersDatasource implements UsersDataSource {
   Future<List<User>> getAllUsers() async {
     try {
       if (_userId == null) throw Exception('User not authenticated');
-      final snapshot = await _usersCollection.get();
+      final snapshot = await _usersCollection
+          .where('role', isEqualTo: 'distributor')
+          .get();
       return snapshot.docs
           .map((doc) => UsersModel.fromJson(doc.data()))
           .toList();

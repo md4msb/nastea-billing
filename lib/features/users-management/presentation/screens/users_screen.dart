@@ -8,7 +8,7 @@ class UsersScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final usersState = ref.read(usersProvider);
+    final usersState = ref.watch(usersProvider);
 
     return Scaffold(
       body: ListView.builder(
