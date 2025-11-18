@@ -23,6 +23,7 @@ class SectionHeader extends StatelessWidget {
           title,
           fontWeight: FontWeight.w600,
           color: Colors.black87,
+          fontSize: 16,
         ),
 
         GestureDetector(

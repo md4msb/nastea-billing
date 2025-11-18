@@ -50,7 +50,7 @@ class AdminHomeScreen extends StatelessWidget {
             // SECTION 2: PENDING APPROVALS
             const PendingApprovalsInsight(),
 
-            const Gap(24),
+            const Gap(12),
 
             // SECTION 3: RECENT ITEMS
             SectionHeader(
