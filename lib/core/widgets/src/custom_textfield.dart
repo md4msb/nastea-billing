@@ -6,9 +6,12 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final double borderRadius;
   final Widget? prefixIcon;
-  final Color? fillColor;
   final bool? obscureText;
+  final Color? fillColor;
+  final Color borderColor;
+
   final EdgeInsetsGeometry? margin;
 
   const CustomTextField({
@@ -17,21 +20,26 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.keyboardType,
     this.maxLines,
+    this.borderRadius = 10,
     this.prefixIcon,
-    this.fillColor = const Color(0xFFF6F8FA),
     this.obscureText,
+    this.fillColor = const Color(0xFFF6F8FA),
+    this.borderColor = const Color(0xFFD8DADC),
     this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: margin ?? EdgeInsets.zero, // Add margin here
+      padding: margin ?? EdgeInsets.zero,
       child: TextFormField(
-        obscureText: obscureText ?? false,
         controller: controller,
+        obscureText: obscureText ?? false,
+        cursorColor: Colors.black,
+        cursorWidth: 1,
         keyboardType: keyboardType,
         maxLines: maxLines,
+        style: NasteaTextStyles.body(fontSize: 14, color: Colors.black),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12),
           hintText: hintText,
@@ -41,16 +49,16 @@ class CustomTextField extends StatelessWidget {
           fillColor: fillColor,
           filled: true,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: borderColor, width: 1),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: borderColor, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xFFD8DADC), width: 1),
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: borderColor, width: 1),
           ),
         ),
       ),
