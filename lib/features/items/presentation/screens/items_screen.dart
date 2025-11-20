@@ -30,7 +30,7 @@ class ItemsScreen extends HookConsumerWidget {
               color: Colors.white,
               elevation: 4,
               shadowColor: Colors.black12,
-              margin: const EdgeInsets.only(bottom: 24),
+              margin: const EdgeInsets.only(bottom: 12),
               child: Column(
                 children: [
                   ListTile(
@@ -81,7 +81,9 @@ class ItemsScreen extends HookConsumerWidget {
                           ),
                           PopupMenuItem(
                             onTap: () {
-                              ref.watch(itemsProvider.notifier).deleteItem(item.id);
+                              ref
+                                  .watch(itemsProvider.notifier)
+                                  .deleteItem(item.id);
                             },
                             child: Center(
                               child: NasteaText.body(

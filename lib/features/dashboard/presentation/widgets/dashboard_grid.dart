@@ -33,7 +33,7 @@ class DashboardGrid extends HookConsumerWidget {
         ),
         DashboardCard(
           icon: Icons.pending_actions_outlined,
-          label: 'Pending Actions',
+          label: 'Access Requests',
           value: '2',
           backgroundColor: Color(0xFF795548).faded(0.7),
           foregroundColor: Colors.white,
@@ -99,7 +99,7 @@ class DashboardCard extends StatelessWidget {
               fontSize: 24,
             ),
             const Spacer(),
-            NasteaText.body(
+            NasteaText.title(
               label,
               color: foregroundColor,
               fontWeight: FontWeight.w500,

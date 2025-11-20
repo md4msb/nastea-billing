@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nastea_billing/core/widgets/widgets.dart'
-;
+import 'package:nastea_billing/core/widgets/widgets.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -19,13 +18,11 @@ class SectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        NasteaText.body(
+        NasteaText.title(
           title,
           fontWeight: FontWeight.w600,
           color: Colors.black87,
-          fontSize: 16,
         ),
-
         GestureDetector(
           onTap: onTap,
           child: NasteaText.body(

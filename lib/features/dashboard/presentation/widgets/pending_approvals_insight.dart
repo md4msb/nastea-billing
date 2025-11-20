@@ -21,7 +21,7 @@ class PendingApprovalsInsight extends HookConsumerWidget {
     return Column(
       children: [
         SectionHeader(
-          title: 'Pending Approvals',
+          title: 'Access Requests',
           actionText: 'View All',
           onTap: () => context.goNamed(RouteNames.users),
         ),
