@@ -85,14 +85,14 @@ class DashboardCard extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(16),
         ),
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(7),
-            Icon(icon, color: foregroundColor, size: 26),
-            const Gap(8),
-            NasteaText.body(
+            Icon(icon, color: foregroundColor, size: 24),
+            const Spacer(),
+            const Gap(3),
+            NasteaText.title(
               value,
               color: foregroundColor,
               fontWeight: FontWeight.w600,
@@ -104,7 +104,6 @@ class DashboardCard extends StatelessWidget {
               color: foregroundColor,
               fontWeight: FontWeight.w500,
             ),
-            const Gap(2),
           ],
         ),
       ),

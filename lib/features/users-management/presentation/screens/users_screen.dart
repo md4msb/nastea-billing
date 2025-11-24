@@ -18,9 +18,9 @@ class UsersScreen extends HookConsumerWidget {
         title: NasteaText.heading("Users", fontWeight: FontWeight.w600),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
-          spacing: 24,
+          spacing: 16,
           children: [
             CustomTextField(
               hintText: 'Search users…',

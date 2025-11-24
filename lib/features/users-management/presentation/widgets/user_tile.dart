@@ -21,10 +21,10 @@ class UserTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isRequested = user.appAccess == 'requested' ? true : false;
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 10),
       padding: EdgeInsets.symmetric(
         horizontal: 12,
-        vertical: isRequested ? 8 : 12,
+        vertical: isRequested ? 6 : 10,
       ),
       decoration: BoxDecoration(
         color: isRequested ? Color(0xFFFFFEF5) : Colors.white,
@@ -61,7 +61,7 @@ class UserTile extends StatelessWidget {
                 children: [
                   NasteaText.body(
                     user.name,
-                    fontSize: type == DispType.dashboard ? 14 : 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -69,7 +69,7 @@ class UserTile extends StatelessWidget {
                   NasteaText.body(
                     user.phoneNumber,
                     color: Color(0xFF6B7A6A),
-                    fontSize: type == DispType.dashboard ? 12 : 14,
+                    fontSize: 12,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -189,8 +189,8 @@ class UserTile extends StatelessWidget {
 
   Container _profilePic() {
     return Container(
-      width: type == DispType.dashboard ? 40 : 45,
-      height: type == DispType.dashboard ? 40 : 45,
+      width: 40,
+      height: 40,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: _getGradientClr(),
@@ -201,7 +201,7 @@ class UserTile extends StatelessWidget {
       ),
       child: Center(
         child: NasteaText.body(
-          user.name[0],
+          user.name[0].toUpperCase(),
           color: user.appAccess == 'requested'
               ? const Color(0xFF8B7355)
               : Colors.white,
