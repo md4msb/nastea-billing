@@ -30,7 +30,7 @@ class ItemsScreen extends HookConsumerWidget {
               color: Colors.white,
               elevation: 4,
               shadowColor: Colors.black12,
-              margin: const EdgeInsets.only(bottom: 12),
+              margin: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
                   ListTile(
